@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Celebrity Horoscope!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel='stylesheet' href='assets/css/style.css'>
+</head>
+<body>
+  <!-- Main container for all content -->
+  <div class='container'>
+    <!-- Jumbotron to display headers across screens -->
+    <div class='jumbotron' id='headerJumbotron'>
+      <!-- main header, can change contents -->
+      <h1 id='mainHeader'>My Celebrity Horoscope!</h1>
+      <!-- sub header, can change contents -->
+      <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
+    </div>
+
+    <!-- Div for the photo upload area. I didn't flesh this out too much, as I know Mark will need to add Divs and Divs and Divs for bootstrap -->
+    <!-- I did however add the divs that will contain the individual elements, Mark can wrap this in whatever columns/rows he needs to. I just wanted the ID to be established for each -->
+    <div>
+      <!-- Div for the explanation text, telling the user to submit a photo, or whatever instructions -->
+      <div id='instructionsDiv'>
+        <p id='instructions'>
+
+        </p>
+      </div>
+      <!-- Div for the button -->
+      <div id='submitBtnDiv'>
+        <!-- Submit button -->
+        <button id='submitBtn'>Submit Photo</button>
+      </div>
+    </div>
+
+    <!-- Div for the dynamically generated previous user matches. This will likely just be an empty div in the HTML? -->
+    <!-- We will add to it via Javascript, adding bootstrap classes as necessary to build rows and columns as we need them -->
+    <!-- Perry mentioned possibly framing this out in HTML instead, and just hiding the elements. This could work, ONLY if we are willing to have a static number of elements. -->
+    <!-- For example, we only display the most recent 10 user submissions. Then we have a HTML skeleton of 10 elements, to which we use JS or jQuery to add urls, text content, etc. -->
+    <!-- Discuss on saturday! -->
+    <div id='userMatchesDiv'>
+
+    </div>
+
+
+    <!-- Div for the second screen, the user results -->
+    <!-- Once again, Mark can flesh out the appropriate cols/rows, I just wanted to attach IDs so we can use them in JS -->
+    <div id='userResults'>
+      
+      <!-- Div where we display the user photo -->
+      <div id='userPhotoDiv'>
+
+      </div>
+      <!-- Div where we display the celeb photo -->
+      <div id='celebPhotoDiv'>
+
+      </div>
+      <!-- Div where we display the horoscope -->
+      <div id='celebHoroscope'></div>
+    </div>
+
+    <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
+    <footer id='footer'>
+
+
+    </footer>
+
+
+  </div>
+
+  
+  
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src='assets/js/script.js'></script>
+
+</body>
+</html>
