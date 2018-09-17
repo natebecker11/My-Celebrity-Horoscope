@@ -1,0 +1,24 @@
+.jumbotron {
+    background-image: url("../images/horoscope2.jpg")
+}
+.card-img-overlay {
+
+	height: 200px;
+	width: 200px;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: gray;
+   color: black;
+   text-align: center;
+}
+/* .fixed-bottom {
+    padding-bottom: 5px;
+    text-align: center;
+
+} */
+
+

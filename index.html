@@ -6,35 +6,79 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Celebrity Horoscope!</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
 <body>
   <!-- Main container for all content -->
-  <div class='container'>
+  <div class='container-fluid'>
     <!-- Jumbotron to display headers across screens -->
-    <div class='jumbotron' id='headerJumbotron'>
+    <div class='jumbotron text-center' id='headerJumbotron'>
       <!-- main header, can change contents -->
       <h1 id='mainHeader'>My Celebrity Horoscope!</h1>
       <!-- sub header, can change contents -->
       <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
     </div>
-
-    <!-- Div for the photo upload area. I didn't flesh this out too much, as I know Mark will need to add Divs and Divs and Divs for bootstrap -->
-    <!-- I did however add the divs that will contain the individual elements, Mark can wrap this in whatever columns/rows he needs to. I just wanted the ID to be established for each -->
-    <div>
-      <!-- Div for the explanation text, telling the user to submit a photo, or whatever instructions -->
-      <div id='instructionsDiv'>
-        <p id='instructions'>
-
-        </p>
-      </div>
-      <!-- Div for the button -->
-      <div id='submitBtnDiv'>
-        <!-- Submit button -->
-        <button id='submitBtn'>Submit Photo</button>
+  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checked data-toggle="toggle" data-size="small">
+                  Click here to allow use of your photo in our celebrity match gallery
+              </label>
+              <div id='submitBtnDiv'>
+                <!-- Submit button need an identifier to read toggle for use or not in gallery-->
+                <button id='submitBtn'>Submit Photo</button>
+              </div>
+            <div id='instructionsDiv'>
+            <p id='instructions'>Please download your photo by inputing the URL.</p>            
+           </div>
+         </div>          
+        </div>
       </div>
     </div>
+      <div class="container">
+        <div class="row">
+          <!-- <div class="col-md-4"> -->
+            <div class="col-md-4"></div>
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Your Photo</h5>
+              <p class="card-text">Your Name</p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Celebrity Photo</h5>
+              <p class="card-text">Celebrity Name</p> 
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    <!-- Div for the photo upload area. I didn't flesh this out too much, as I know Mark will need to add Divs and Divs and Divs for bootstrap -->
+    <!-- I did however add the divs that will contain the individual elements, Mark can wrap this in whatever columns/rows he needs to. I just wanted the ID to be established for each -->
+    </div>
+  <!-- </div> -->
+      <!-- Div for the explanation text, telling the user to submit a photo, or whatever instructions -->
+      <!-- Div for the button -->
+                  
+</head>
+<body>
+
+
+
+
+
+    
 
     <!-- Div for the dynamically generated previous user matches. This will likely just be an empty div in the HTML? -->
     <!-- We will add to it via Javascript, adding bootstrap classes as necessary to build rows and columns as we need them -->
@@ -42,6 +86,7 @@
     <!-- For example, we only display the most recent 10 user submissions. Then we have a HTML skeleton of 10 elements, to which we use JS or jQuery to add urls, text content, etc. -->
     <!-- Discuss on saturday! -->
     <div id='userMatchesDiv'>
+      <!--above id will remain empty -->
 
     </div>
 
@@ -64,6 +109,9 @@
 
     <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
     <footer id='footer'>
+        <div class="footer bg-secondary">
+          <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
+
 
 
     </footer>
