@@ -1,15 +1,19 @@
 var apiKey = 'pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP'
 var apiSecret = 'NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j'
+var database = firebase.database();
 
-$.ajax({
-  method: 'POST',
-  url: 'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=' + apiKey +  '&api_secret=' + apiSecret + '&image_url=' + 'https://i.imgur.com/goSHzjB.png'
-  
-}).then(function(result) {
-  console.log(result);
-}).catch(function(error) {
-  console.log(error)
-})
+
+var ajaxTest = function() {
+  $.ajax({
+    method: 'POST',
+    url: 'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=' + apiKey +  '&api_secret=' + apiSecret + '&image_url=' + 'https://i.imgur.com/goSHzjB.png'
+    
+  }).then(function(result) {
+    console.log(result);
+  }).catch(function(error) {
+    console.log(error)
+  })
+}
 
 
 // when the submit photo button is pressed
