@@ -22,12 +22,12 @@
       <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
     </div>
   </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" checked data-toggle="toggle" data-size="small">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="checkbox">
+          <label>
+              <input type="checkbox" id="consentToggle" checked data-toggle="toggle" data-size="small">
                   Click here to allow use of your photo in our celebrity match gallery
               </label>
               <div id='submitBtnDiv'>
@@ -47,14 +47,14 @@
             <div class="col-md-4"></div>
         <div class="card-deck">
           <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="assets/images/dustin.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Your Photo</h5>
               <p class="card-text">Your Name</p>
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="assets/images/zach.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Celebrity Photo</h5>
               <p class="card-text">Celebrity Name</p> 
@@ -71,20 +71,53 @@
       <!-- Div for the explanation text, telling the user to submit a photo, or whatever instructions -->
       <!-- Div for the button -->
                   
-</head>
-<body>
 
-
-
-
+<div id='userResults'>
+    <div class="card-deck">
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Your Photo</h5>
+          <p class="card-text">Your Name</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Celebrity Photo</h5>
+          <p class="card-text">Celebrity Name</p> 
+          
+        </div>
+      </div>
+    </div>
+  </div>
 
     
+    <!-- Div where we display the user photo -->
+    <div id='userPhotoDiv'>
 
-    <!-- Div for the dynamically generated previous user matches. This will likely just be an empty div in the HTML? -->
-    <!-- We will add to it via Javascript, adding bootstrap classes as necessary to build rows and columns as we need them -->
-    <!-- Perry mentioned possibly framing this out in HTML instead, and just hiding the elements. This could work, ONLY if we are willing to have a static number of elements. -->
-    <!-- For example, we only display the most recent 10 user submissions. Then we have a HTML skeleton of 10 elements, to which we use JS or jQuery to add urls, text content, etc. -->
-    <!-- Discuss on saturday! -->
+    </div>
+    <!-- Div where we display the celeb photo -->
+    <div id='celebPhotoDiv'>
+
+    </div>
+    <!-- Div where we display the horoscope -->
+    <div id='celebHoroscope'></div>
+  </div>
+
+  <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
+  <footer id='footer'>
+      <div class="footer bg-secondary">
+        <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
+
+
+
+  </footer>
+
+
+</div>   
+
+    <!-- put this inside a container -->
     <div id='userMatchesDiv'>
       <!--above id will remain empty -->
 
@@ -94,6 +127,25 @@
     <!-- Div for the second screen, the user results -->
     <!-- Once again, Mark can flesh out the appropriate cols/rows, I just wanted to attach IDs so we can use them in JS -->
     <div id='userResults'>
+      <div class="card-deck">
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Your Photo</h5>
+            <p class="card-text">Your Name</p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Celebrity Photo</h5>
+            <p class="card-text">Celebrity Name</p> 
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
       
       <!-- Div where we display the user photo -->
       <div id='userPhotoDiv'>
