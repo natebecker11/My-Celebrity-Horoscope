@@ -35,7 +35,10 @@
                 <button id='submitBtn'>Submit Your Photo</button>
               </div>
             <div id='instructionsDiv'>
-            <p id='instructions'>Please download your photo by inputing the URL link.</p>            
+            <p id='instructions'>Please download your photo by inputing the URL link.</p>
+            <div class="hidden">
+
+            </div>            
            </div>
          </div>          
         </div>
@@ -46,26 +49,24 @@
           <!-- <div class="col-md-4"> -->
             <div class="col-md-4"></div>
         <div class="card-deck">
-          <div class="card">
+          <div class="card" id="userPhoto">
             <img class="card-img-top" src="assets/images/dustin.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Your Photo</h5>
-              <p class="card-text">Your Name</p>
+              <p class="card-text">Dustin</p>
             </div>
           </div>
-          <div class="card">
+          <div class="card" id="celebPhoto">
             <img class="card-img-top" src="assets/images/zach.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Celebrity Photo</h5>
-              <p class="card-text">Celebrity Name</p> 
+              <p class="card-text">Zach Galafiniakis</p> 
               
             </div>
           </div>
         </div>
       </div>
       </div>
-    <!-- Div for the photo upload area. I didn't flesh this out too much, as I know Mark will need to add Divs and Divs and Divs for bootstrap -->
-    <!-- I did however add the divs that will contain the individual elements, Mark can wrap this in whatever columns/rows he needs to. I just wanted the ID to be established for each -->
     </div>
   <!-- </div> -->
       <!-- Div for the explanation text, telling the user to submit a photo, or whatever instructions -->
@@ -105,14 +106,11 @@
     <div id='celebHoroscope'></div>
   </div>
 
-  <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
-  <footer id='footer'>
+    <footer id='footer'>
       <div class="footer bg-secondary">
         <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
 
-
-
-  </footer>
+    </footer>
 
 
 </div>   
@@ -158,22 +156,12 @@
       <!-- Div where we display the horoscope -->
       <div id='celebHoroscope'></div>
     </div>
-
     <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
     <footer id='footer'>
         <div class="footer bg-secondary">
           <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
-
-
-
     </footer>
-
-
   </div>
-
-  
-  
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src='assets/js/script.js'></script>
