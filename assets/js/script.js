@@ -36,7 +36,22 @@ var ajaxTest = function() {
 
 
 // function to create columns
+function createCols(newCol){
+  var newCol = $("th").append(
+    $("<td>").text(),
+  );
+  $("#userResults > tbody > th").append(newCol);
+}
 
-// function to create and append a row
+
+// function to create and append a row (We can change this if our intention is to add multiple rows with one table heading. )
+function createRow(newRow){
+  var newRow = $("<tr>").append(
+    $("<td>").text(newCol),
+    $("<td>").text(newCol),
+    $("<td>").text(newCol),
+  );
+  $("#userResults > tbody").append(newRow);
+}
 
 
