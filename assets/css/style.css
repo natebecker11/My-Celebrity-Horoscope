@@ -6,6 +6,11 @@
 	height: 200px;
 	width: 200px;
 }
+
+.hidden {
+    display:none;
+}
+
 .footer {
    position: fixed;
    left: 0;
@@ -15,10 +20,6 @@
    color: black;
    text-align: center;
 }
-/* .fixed-bottom {
-    padding-bottom: 5px;
-    text-align: center;
 
-} */
 
 
