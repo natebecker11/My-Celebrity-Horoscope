@@ -36,7 +36,7 @@ $(document).on("click", "#submitBtn", function() {
 
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
     var urlSubmission =
-      "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" +
+      "https://api-us.faceplusplus.com/facepp/v3/search?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" +
       userImageUrl;
 
     $.ajax({
@@ -52,7 +52,7 @@ $(document).on("click", "#submitBtn", function() {
   }
 });
 
-
-database.ref().orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
+// The userMatches may need to change if you have a different file system in mind...
+database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
 
 })
