@@ -1,5 +1,15 @@
 var apiKey = "pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP";
 var apiSecret = "NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j";
+var config = {
+  apiKey: "AIzaSyDKgQaOVe3BdoFNvJXVGwcrRiBdRnsvV5k",
+  authDomain: "namegoeshere-f1eb4.firebaseapp.com",
+  databaseURL: "https://namegoeshere-f1eb4.firebaseio.com",
+  projectId: "namegoeshere-f1eb4",
+  storageBucket: "namegoeshere-f1eb4.appspot.com",
+  messagingSenderId: "134110809293"
+};
+firebase.initializeApp(config);
+var database = firebase.database()
 
 $.ajax({
   method: "POST",
@@ -20,7 +30,7 @@ $(document).on("click", "#submitBtn", function() {
   var today = formatDate(new Date());
 
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
-  var userImageUrl = $("label[for='inputboxID']").text();
+  var userImageUrl = $('#inputboxID').val().trim();
   // Basic placeholder validator for until I understand the basics of Dustin's library...
   if (userImageUrl || typeof userImageUrl === "string") {
 
@@ -41,3 +51,8 @@ $(document).on("click", "#submitBtn", function() {
       });
   }
 });
+
+
+database.ref().orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
+
+})
