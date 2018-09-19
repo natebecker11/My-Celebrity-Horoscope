@@ -1,9 +1,7 @@
 var apiKey = 'pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP'
 var apiSecret = 'NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j'
 var database = firebase.database();
-var nateFunction = function () {
-  console.log("Nate, get to work! You've been handed the AJAX data here")
-}
+
 
 var ajaxTest = function() {
   $.ajax({
@@ -37,6 +35,33 @@ var ajaxTest = function() {
   // for/in loop to create elements for each
 
 
+// function to call the aztro API for a horoscope
+var callAztro = function (sign) {
+  // make a call to the aztro db with the sign
+  // return the horoscope
+}
+
+// function to call the FB database after a token is generated, to retreive appropriate celeb info
+var grabCelebInfo = function (token, info) {
+  // db call to the celebsRef using the token
+    
+}
+
+// function to update the database after a user match has been made, to record that match
+var dbPush = function (token, date) {
+  console.log(token + ' ' + date)
+}
+
+// function to display the user match 
+var showMatch = function (token, url) {
+  console.log(token + ' ' + url)
+}
+
+// function to process the data from the returned AJAX and the user input
+var processUserMatch = function () {
+
+}
+
 $(document).on("click", "#submitBtn", function() {
   // I really still do not understand dates, so potentially inefficient but working code, go:
   var formatDate = dateFns.format;
@@ -57,8 +82,12 @@ $(document).on("click", "#submitBtn", function() {
       url: urlSubmission
     })
       .then(function(result) {
-        console.log(result);
-        nateFunction(result)
+        var faceToken = result['faces'][0]['face_token']
+        console.log(faceToken);
+        // publish the results to the firebase db
+        dbPush(faceToken, today)
+        // display the results for the user
+        showMatch(faceToken, userImageUrl)
       })
       .catch(function(error) {
         console.log(error);
@@ -70,7 +99,7 @@ $(document).on("click", "#submitBtn", function() {
 database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
   for (var info in snapshot.val()) {
     // takeObject(snapshot[i])}
-    console.log(snapshot.val()[info]);
+    // console.log(snapshot.val()[info]);
   }
 })
 
