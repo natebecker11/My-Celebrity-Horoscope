@@ -1,7 +1,9 @@
 var apiKey = 'pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP'
 var apiSecret = 'NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j'
 var database = firebase.database();
-
+var nateFunction = function () {
+  console.log("Nate, get to work! You've been handed the AJAX data here")
+}
 
 var ajaxTest = function() {
   $.ajax({
@@ -56,6 +58,7 @@ $(document).on("click", "#submitBtn", function() {
     })
       .then(function(result) {
         console.log(result);
+        nateFunction(result)
       })
       .catch(function(error) {
         console.log(error);
@@ -65,7 +68,8 @@ $(document).on("click", "#submitBtn", function() {
 
 // The userMatches may need to change if you have a different file system in mind...
 database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
-
+for (i = 0; i < 9; i++) {
+  takeObject(snapshot[i])}
 })
 
 // function to create columns
