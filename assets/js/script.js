@@ -1,6 +1,5 @@
 var apiKey = "pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP";
 var apiSecret = "NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j";
-firebase.initializeApp(config);
 var database = firebase.database()
 
 
