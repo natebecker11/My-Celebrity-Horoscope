@@ -1,6 +1,6 @@
-var apiKey = "pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP";
-var apiSecret = "NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j";
-var database = firebase.database()
+var apiKey = 'pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP'
+var apiSecret = 'NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j'
+var database = firebase.database();
 
 
 var ajaxTest = function() {
