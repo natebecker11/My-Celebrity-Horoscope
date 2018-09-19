@@ -43,7 +43,7 @@ $(document).on("click", "#submitBtn", function() {
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
   var userImageUrl = $('#inputboxID').val().trim();
   // Basic placeholder validator for until I understand the basics of Dustin's library...
-  if (userImageUrl || typeof userImageUrl === "string") {
+  if (userImageUrl && typeof userImageUrl === "string") {
 
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
     var urlSubmission =
