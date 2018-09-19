@@ -34,23 +34,37 @@ var ajaxTest = function() {
   // call the firebase db in the usermatches ref, limit to 10, sort by date added
   // for/in loop to create elements for each
 
+// function to update the database after a user match has been made, to record that match
+var dbPush = function (celebName, horoscope, celebUrl, userUrl, date) {
+  console.log('celebname=' + celebName + 'horoscope=' + horoscope + 'celebUrl=' + celebUrl + 'userUrl=' + userUrl + 'date added=' + date)
+}
 
 // function to call the aztro API for a horoscope
-var callAztro = function (sign) {
+var passAztro = function (name, sign, celebUrl, userUrl, date) {
   // make a call to the aztro db with the sign
-  // return the horoscope
+  $.ajax({
+    method: 'POST',
+    url: 'https://aztro.sameerkumar.website?sign=' + sign +'&day=today'
+  }).then(function(response) {
+    // bind the horoscope
+    var horoscope = response['description'];
+    // call the data update function to update the db
+    dbPush(name, horoscope, celebUrl, userUrl, date);
+    // call the user display function to display the relevant data to the user
+  })
 }
 
 // function to call the FB database after a token is generated, to retreive appropriate celeb info
-var grabCelebInfo = function (token, info) {
-  // db call to the celebsRef using the token
-    
+var grabCelebInfo = function (token, userUrl, date) {
+  // call the db for the celeb token provided by face++
+  database.ref('/celebsRef/' + token + '/').once('value', function(snap) {
+    var celeb = snap.val();
+    // send the name, sign and info on to the function that queries Aztro
+    passAztro(celeb.name, celeb.sign, celeb.url, userUrl, date)
+  })     
 }
 
-// function to update the database after a user match has been made, to record that match
-var dbPush = function (token, date) {
-  console.log(token + ' ' + date)
-}
+
 
 // function to display the user match 
 var showMatch = function (token, url) {
@@ -85,9 +99,7 @@ $(document).on("click", "#submitBtn", function() {
         var faceToken = result['faces'][0]['face_token']
         console.log(faceToken);
         // publish the results to the firebase db
-        dbPush(faceToken, today)
-        // display the results for the user
-        showMatch(faceToken, userImageUrl)
+        grabCelebInfo(faceToken, userImageUrl, today);
       })
       .catch(function(error) {
         console.log(error);
