@@ -73,12 +73,14 @@ var takeObject = function(object){
     
     var image = $("<img>");
     var image2 = $("<img>");
+    var pTag = $("<p>");
     
 
     //created an element of image with a source of the variable i made
   $(image).attr('src', userURL);
+  // $(image).attr('alt', userURL);
   $(image2).attr('src', celebURL);
-  $('#horoscopeID').attr(hororscopeString);
+  $(pTag).text(hororscopeString);
 
   var col = $("<div>");
   $(col).addClass('col-4');
@@ -90,11 +92,14 @@ var takeObject = function(object){
 
   var col3 = $("<div>");
   $(col).addClass('col-4');
-  $(col).append(horoscopeID);
+  $(col).append(pTag);
 
   console.log(object);
 
   var createRow = $("<div>");
+  $(createRow).addClass('row');
+  $(createRow).append(col, col2, col3);
+  $(createRow).appendTo($("#userMatchesDiv"));
 };
 
 takeObject(testObject);
