@@ -1,6 +1,11 @@
 .jumbotron {
     background-image: url("../images/horoscope2.jpg")
 }
+
+.checkbox {
+    text-align: center;
+    font-size: 20px;
+}
 .card-img-top {
 
 	height: 200px;

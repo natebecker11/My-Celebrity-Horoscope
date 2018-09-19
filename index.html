@@ -13,18 +13,15 @@
 </head>
 <body>
   <!-- Main container for all content -->
-  <div class='container-fluid'>
-    <!-- Jumbotron to display headers across screens -->
-    <div class='jumbotron text-center' id='headerJumbotron'>
-      <!-- main header, can change contents -->
+  <div class='container-fluid'>    
+    <div class='jumbotron text-center' id='headerJumbotron'>      
       <h1 id='mainHeader'>My Celebrity Horoscope!</h1>
-      <!-- sub header, can change contents -->
-      <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
+        <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
     </div>
   </div>
   <div class="container-fluid" id="submitArea">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <div class="checkbox">
           <label>
               <input type="checkbox" id="consentToggle" checked data-toggle="toggle" data-size="small">
@@ -45,25 +42,27 @@
       </div>
     </div>
     <div class="container">
-      <div class="row">        
+      <div class="row">
+        
         <div class="card-deck">
-          <div class="col-4">
-            <div class="card">
+          
+          <div class="card">
                 <img class="card-img-top" id="userPhoto" src="assets/images/dustin.jpg" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">Dustin</h5>              
                 </div>
             </div>
-          </div>
-          <div class="col-4">
+          
+          
             <div class="card">
               <img class="card-img-top" id="celebPhoto" src="assets/images/zach.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title" id="celebName">Zach Galafiniakis</h5>
               </div>
             </div>   
-          </div>  
+        </div> 
         </div>
+        
       </div>
     </div>
       
