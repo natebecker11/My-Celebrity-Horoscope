@@ -10,8 +10,8 @@
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
 <body>
-  <!-- Main container for all content -->
-  <div class='container'>
+  <!-- Main container for all content XXXX Changed container to fluid for github example-->
+  <div class='container-fluid'>
     <!-- Jumbotron to display headers across screens -->
     <div class='jumbotron' id='headerJumbotron'>
       <!-- main header, can change contents -->
@@ -23,7 +23,8 @@
     <!-- Div for the photo upload area. I didn't flesh this out too much, as I know Mark will need to add Divs and Divs and Divs for bootstrap -->
     <!-- I did however add the divs that will contain the individual elements, Mark can wrap this in whatever columns/rows he needs to. I just wanted the ID to be established for each -->
     <div>
-      <!-- Div for the explanation text, telling the user to submit a photo, or whatever instructions -->
+      <!-- Div for the explanation text, telling the user to submit a photo or whatever instructions -->
+      <!-- Extraneous comma; FTFY -->
       <div id='instructionsDiv'>
         <p id='instructions'>
 
@@ -45,7 +46,8 @@
     <!-- For example, we only display the most recent 10 user submissions. Then we have a HTML skeleton of 10 elements, to which we use JS or jQuery to add urls, text content, etc. -->
     <!-- Discuss on saturday! -->
     <div id='userMatchesDiv'>
-
+    <!-- This is the change im using for the test -->
+    <p>this is the paragraph change i added</p>
     </div>
 
 
@@ -74,10 +76,22 @@
 
   </div>
 
+  <p>test est test</p>
   
-  
-  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB3OK_gHk-gUawA0rVSWZH-P4IIHL9BooM",
+    authDomain: "my-celebrity-horoscope.firebaseapp.com",
+    databaseURL: "https://my-celebrity-horoscope.firebaseio.com",
+    projectId: "my-celebrity-horoscope",
+    storageBucket: "my-celebrity-horoscope.appspot.com",
+    messagingSenderId: "290575991301"
+  };
+  firebase.initializeApp(config);
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src='assets/js/script.js'></script>
 
