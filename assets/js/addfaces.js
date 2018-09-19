@@ -112,6 +112,9 @@ $('#submitBtn').on('click', function() {
     url = '';
     name = '';
     sign = '';
+    $('#urlInput').empty();
+    $('#nameInput').empty();
+    $('#signInput').empty();
   }
 })
 

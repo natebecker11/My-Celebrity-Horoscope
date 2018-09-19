@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Celebrity Horoscope!</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
 <body>
@@ -30,8 +30,11 @@
 
         </p>
       </div>
-      <!-- Div for the button -->
+      <!-- Div for the button and form -->
       <div id='submitBtnDiv'>
+        <!-- URL Form -->
+        <label for="inputboxID">The third-party hosted URL goes here<i class="fa-arrow-down">.</i></label>
+        <input class="form-control" id="inputboxID" type="text">
         <!-- Submit button -->
         <button id='submitBtn'>Submit Photo</button>
       </div>
@@ -43,6 +46,7 @@
     <!-- For example, we only display the most recent 10 user submissions. Then we have a HTML skeleton of 10 elements, to which we use JS or jQuery to add urls, text content, etc. -->
     <!-- Discuss on saturday! -->
     <div id='userMatchesDiv'>
+
     <!-- This is the change im using for the test -->
     <div class='row'>
       <div class='col-4'>
@@ -54,6 +58,8 @@
       <div class='col-4'>
         <p id="horoscopeID">Horoscope. It's a horoscope. Horoscope. It's a horoscope.Horoscope. It's a horoscope.Horoscope. It's a horoscope.Horoscope. It's a horoscope.</p>
       </div>
+
+
     </div>
   </div>
 
@@ -83,9 +89,9 @@
 
   </div>
 
-  <p>test est test</p>
   
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simply_valid@4.0.1/dist/simplyValid.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
   <script>
   // Initialize Firebase
