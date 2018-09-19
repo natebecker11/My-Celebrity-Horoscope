@@ -1,13 +1,5 @@
 var apiKey = "pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP";
 var apiSecret = "NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j";
-var config = {
-  apiKey: "AIzaSyDKgQaOVe3BdoFNvJXVGwcrRiBdRnsvV5k",
-  authDomain: "namegoeshere-f1eb4.firebaseapp.com",
-  databaseURL: "https://namegoeshere-f1eb4.firebaseio.com",
-  projectId: "namegoeshere-f1eb4",
-  storageBucket: "namegoeshere-f1eb4.appspot.com",
-  messagingSenderId: "134110809293"
-};
 firebase.initializeApp(config);
 var database = firebase.database()
 
