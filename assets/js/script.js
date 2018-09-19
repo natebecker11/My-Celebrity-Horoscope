@@ -68,8 +68,10 @@ $(document).on("click", "#submitBtn", function() {
 
 // The userMatches may need to change if you have a different file system in mind...
 database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
-for (i = 0; i < 9; i++) {
-  takeObject(snapshot[i])}
+  for (var info in snapshot.val()) {
+    // takeObject(snapshot[i])}
+    console.log(snapshot.val()[info]);
+  }
 })
 
 // function to create columns
