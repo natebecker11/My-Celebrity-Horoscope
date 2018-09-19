@@ -71,6 +71,16 @@ var createToken = function(imageUrl, name, sign) {
 //   })
 // }
 
+// function to see the faceSet details
+var faceSetDetail = function() {
+  $.ajax({
+    method: 'POST',
+    url: 'https://api-us.faceplusplus.com/facepp/v3/faceset/getdetail?api_key=' + apiKey + '&api_secret=' + apiSecret + '&faceset_token=' + faceSetToken
+  }).then(function(response) {
+    console.log(response['face_tokens'])
+  })
+}
+
 
 // // // DEPRECATED!!!
 // // function to add a new face to the face set, taking an image url, a celeb name, and a zodiac sign as the parameters
