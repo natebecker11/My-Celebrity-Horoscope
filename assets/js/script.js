@@ -73,22 +73,85 @@ for (i = 0; i < 9; i++) {
 })
 
 // function to create columns
-function createCols(newCol){
-  var newCol = $("th").append(
-    $("<td>").text(),
-  );
-  $("#userResults > tbody > th").append(newCol);
-}
+// function createCols(newCol){
+//   var newCol = $("th").append(
+//     $("<td>").text(),
+//   );
+//   $("#userResults > tbody > th").append(newCol);
+// }
 
 
 // function to create and append a row (We can change this if our intention is to add multiple rows with one table heading. )
-function createRow(newRow){
-  var newRow = $("<tr>").append(
-    $("<td>").text(newCol),
-    $("<td>").text(newCol),
-    $("<td>").text(newCol),
-  );
-  $("#userResults > tbody").append(newRow);
+// function createRow(newRow){
+//   var newRow = $("<tr>").append(
+//     $("<td>").text(newCol),
+//     $("<td>").text(newCol),
+//     $("<td>").text(newCol),
+//   );
+//   $("#userResults > tbody").append(newRow);
+// }
+
+
+
+
+
+var testObject = {
+  userImg: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
+  celebImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/1200px-CNN.svg.png',
+  horoscope: 'this is a horoscope'
 }
 
 
+var takeObject = function(object){
+
+  //making variables to connect to the certain key value pairs i want.
+    var userURL= object.userImg;
+    var celebURL= object.celebImg;
+    var hororscopeString= object.horoscope;
+    
+    var image = $("<img>");
+    var image2 = $("<img>");
+    var pTag = $("<p>");
+    
+
+    //created an element of image with a source of the variable i made
+  $(image).attr('src', userURL);
+  // $(image).attr('alt', userURL);
+  $(image2).attr('src', celebURL);
+  $(pTag).text(hororscopeString);
+
+  var col = $("<div>");
+  $(col).addClass('col-4');
+  $(col).append(image);
+
+  var col2 = $("<div>");
+  $(col).addClass('col-4');
+  $(col).append(image2);
+
+  var col3 = $("<div>");
+  $(col).addClass('col-4');
+  $(col).append(pTag);
+
+  console.log(object);
+
+  var createRow = $("<div>");
+  $(createRow).addClass('row');
+  $(createRow).append(col, col2, col3);
+  $(createRow).appendTo($("#userMatchesDiv"));
+};
+
+takeObject(testObject);
+// create elements from an ojbect of data$("<>").text().val();
+ // define a function that takes an object  as an argument
+   // parse the data inside
+     // run column and row creation functions
+       // run row maker
+         // run column creator for userImg
+         // run col creator for celebImg
+         // run col creator for horoscope
+
+// create a new column
+
+// append a column to a row
+
+// create a row comprised of columns, and append it to a target div`
