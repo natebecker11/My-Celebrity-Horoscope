@@ -1,7 +1,9 @@
 var apiKey = 'pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP'
 var apiSecret = 'NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j'
 var database = firebase.database();
-
+var nateFunction = function () {
+  console.log("Nate, get to work! You've been handed the AJAX data here")
+}
 
 var ajaxTest = function() {
   $.ajax({
@@ -34,6 +36,41 @@ var ajaxTest = function() {
   // call the firebase db in the usermatches ref, limit to 10, sort by date added
   // for/in loop to create elements for each
 
+
+$(document).on("click", "#submitBtn", function() {
+  // I really still do not understand dates, so potentially inefficient but working code, go:
+  var formatDate = dateFns.format;
+  var today = formatDate(new Date());
+
+  // Here, the URL for the user's image upload is stored if there is a URL submitted.
+  var userImageUrl = $('#inputboxID').val().trim();
+  // Basic placeholder validator for until I understand the basics of Dustin's library...
+  if (userImageUrl && typeof userImageUrl === "string") {
+
+    // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
+    var urlSubmission =
+      "https://api-us.faceplusplus.com/facepp/v3/search?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" +
+      userImageUrl;
+
+    $.ajax({
+      method: "POST",
+      url: urlSubmission
+    })
+      .then(function(result) {
+        console.log(result);
+        nateFunction(result)
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+});
+
+// The userMatches may need to change if you have a different file system in mind...
+database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
+for (i = 0; i < 9; i++) {
+  takeObject(snapshot[i])}
+})
 
 // function to create columns
 function createCols(newCol){
