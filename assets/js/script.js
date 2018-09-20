@@ -15,25 +15,6 @@ var ajaxTest = function() {
   })
 }
 
-
-// when the submit photo button is pressed
-  // prompt user to submit a photo - TODO: How does this work?
-  // run validation function on input to ensure it's a photo (binary?)
-  // grab today's date in a var, send to firebase DB
-  // store user face in firebase DB
-  // api call to face++ search api
-  // get celebrity name and image url from result
-    // celebrity name goes to astrology api
-      // return horoscope info, goes to user results
-    // celebrity face url goes to user results
-      // also send celeb face to firebase db
-  // hide the submit screen, show the result screen
-    // intermediate graphic? setTimeout?
-
-// populate the usermatches div on page load
-  // call the firebase db in the usermatches ref, limit to 10, sort by date added
-  // for/in loop to create elements for each
-
 // function to update the database after a user match has been made, to record that match
 var dbPush = function (celebName, horoscope, celebUrl, userUrl, date) {
   console.log('celebname= ' + celebName + ' horoscope= ' + horoscope + ' celebUrl= ' + celebUrl + ' userUrl= ' + userUrl + ' date added= ' + date)
@@ -49,10 +30,12 @@ var dbPush = function (celebName, horoscope, celebUrl, userUrl, date) {
 // function to display the user match 
 var showMatch = function (celebName, horoscope, celebUrl, userUrl) {
   console.log('celebname= ' + celebName + ' horoscope= ' + horoscope + ' celebUrl= ' + celebUrl + ' userUrl= ' + userUrl)
-  $('<img>').attr('src', userUrl).appendTo($('#userPhotoDiv'));
-  $('<img>').attr('src', celebUrl).appendTo($('#celebPhotoDiv'));
-  $('<h3>').text('YOU MATCHED WITH ' + celebName.toUpperCase() + '!!!').appendTo($('#celebPhotoDiv'));
-  $('<p>').text(horoscope).appendTo($('#celebHoroscope'));
+  $('#userPhoto').attr('src', userUrl);
+  $('#celebPhoto').attr('src', celebUrl);
+  // $('<h3>').text('YOU MATCHED WITH ' + celebName.toUpperCase() + '!!!').appendTo($('#celebPhotoDiv'));
+  // $('#celebHoroscope')
+  $('#celebNameDisplay').text(celebName);
+  $('#celebHoroscope').text(horoscope);
 }
 
 // function to call the aztro API for a horoscope
