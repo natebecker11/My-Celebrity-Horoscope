@@ -6,17 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Celebrity Horoscope!</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
+  
+  
 <body>
   <!-- Main container for all content -->
   <div class='container-fluid'>    
-    <div class='jumbotron text-center' id='headerJumbotron'>      
+    <div class='jumbotron text-center' id='headerJumbotron'>  
       <h1 id='mainHeader'>My Celebrity Horoscope!</h1>
-        <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
+      <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
     </div>
   </div>
   <div class="container-fluid" id="submitArea">
@@ -29,6 +29,9 @@
           </label>
               <div id='submitBtnDiv'>
                 <!-- Submit button need an identifier to read toggle for use or not in gallery-->
+                <!-- URL Form -->
+                <label for="inputboxID">The third-party hosted URL goes here<i class="fa fa-arrow-down">.</i></label>
+                <input class="form-control" id="inputboxID" type="text">
                 <button id='submitBtn'>Submit Your Photo</button>
               </div>
             <div id='instructionsDiv'>
@@ -41,6 +44,7 @@
         </div>
       </div>
     </div>
+  <div id='resultsArea'>
     <div class="container"> 
       <div class="row">
           <div class="d-flex justify-content-center">
@@ -66,42 +70,21 @@
             </div>
         </div> 
       </div> 
-
-      
-    
-      
-    
-  
-    <!-- Div to contain all of the results..user / celeb photos / horoscope -->
-    <div id='resultsArea'>
-
     </div>
-    <!-- Div where we display the user photo -->
-    <div id='userPhotoDiv'>
 
-    </div>
-    <!-- Div where we display the celeb photo -->
-    <div id='celebPhotoDiv'>
-
-    </div>
-    <!-- Div where we display the horoscope -->
-    <div id='celebHoroscope'></div>
-  </div>
-
-    <footer id='footer'>
-      <div class="footer bg-secondary">
-        <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
-
-    </footer>
-
-
-  </div>  
-
-    <!-- put this inside a container -->
-    <div id='userMatchesDiv'>
-      
-      <!--above id will remain empty -->
-
+  <!-- put this inside a container -->
+  <div id='userMatchesDiv'>      
+      <!--above id will remain empty -->   
+    <div class='row'>
+      <div class='col-4'>
+        <!-- <img src='userImg.jpg'> -->
+      </div>
+      <div class='col-4'>
+        <!-- <img src='celebImg.jpg'> -->
+      </div>
+      <div class='col-4'>
+        <p id="horoscopeID">Horoscope. It's a horoscope. Horoscope. It's a horoscope.Horoscope. It's a horoscope.Horoscope. It's a horoscope.Horoscope. It's a horoscope.</p>
+      </div>
     </div>
 
 
@@ -128,27 +111,36 @@
     </div> -->
 
       
-      <!-- Div where we display the user photo -->
-      <div id='userPhotoDiv'>
 
-      </div>
-      <!-- Div where we display the celeb photo -->
-      <div id='celebPhotoDiv'>
+    <footer id='footer'>
+      <div class="footer bg-secondary">
+        <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
 
-      </div>
-      <!-- Div where we display the horoscope -->
-      <div id='celebHoroscope'></div>
-    </div>
-    <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
-    <!-- <footer id='footer'> -->
-        <!-- <div class="footer bg-secondary"> -->
-          <!-- <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div> -->
-  
-      <!-- </footer> -->
+    </footer>
+
   </div>
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simply_valid@4.0.1/dist/simplyValid.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB3OK_gHk-gUawA0rVSWZH-P4IIHL9BooM",
+    authDomain: "my-celebrity-horoscope.firebaseapp.com",
+    databaseURL: "https://my-celebrity-horoscope.firebaseio.com",
+    projectId: "my-celebrity-horoscope",
+    storageBucket: "my-celebrity-horoscope.appspot.com",
+    messagingSenderId: "290575991301"
+  };
+  firebase.initializeApp(config);
+  </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src='assets/js/script.js'></script>
 
-<!-- </body> -->
+  </body>
 </html>
