@@ -80,8 +80,8 @@ $(document).on("click", "#submitBtn", function() {
 
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
   var userImageUrl = $('#inputboxID').val().trim();
-  // Basic placeholder validator for until I understand the basics of Dustin's library...
-  if (userImageUrl && typeof userImageUrl === "string") {
+  // This validator does not use Simply Valid because it is focused on the ending, which that lib does not do.
+  if (typeof userImageUrl === "string" && (userImageUrl.endsWith('jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
 
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
     var urlSubmission =
