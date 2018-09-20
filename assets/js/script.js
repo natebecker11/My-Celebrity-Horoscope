@@ -76,7 +76,7 @@ var processUserMatch = function () {
 $(document).on("click", "#submitBtn", function() {
   // I really still do not understand dates, so potentially inefficient but working code, go:
   var formatDate = dateFns.format;
-  var today = formatDate(new Date());
+  var today = formatDate(new Date(), 'MM/DD/YYYY');
 
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
   var userImageUrl = $('#inputboxID').val().trim();
