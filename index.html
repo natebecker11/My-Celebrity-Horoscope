@@ -9,45 +9,72 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
+  
+  
 <body>
-  <!-- Main container for all content XXXX Changed container to fluid for github example-->
-  <div class='container-fluid'>
-    <!-- Jumbotron to display headers across screens -->
-    <div class='jumbotron' id='headerJumbotron'>
-      <!-- main header, can change contents -->
+  <!-- Main container for all content -->
+  <div class='container-fluid'>    
+    <div class='jumbotron text-center' id='headerJumbotron'>  
       <h1 id='mainHeader'>My Celebrity Horoscope!</h1>
-      <!-- sub header, can change contents -->
       <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
     </div>
+  </div>
+  <div class="container-fluid" id="submitArea">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="checkbox">            
+          <label>
+              <input type="checkbox" id="consentToggle" checked data-toggle="toggle" data-size="small">
+                  Click here to allow use of your photo in our celebrity match gallery
+          </label>
+              <div id='submitBtnDiv'>
+                <!-- Submit button need an identifier to read toggle for use or not in gallery-->
+                <!-- URL Form -->
+                <label for="inputboxID">The third-party hosted URL goes here<i class="fa fa-arrow-down">.</i></label>
+                <input class="form-control" id="inputboxID" type="text">
+                <button id='submitBtn'>Submit Your Photo</button>
+              </div>
+            <div id='instructionsDiv'>
+            <p id='instructions'>Please download your photo by inputing the URL link.</p>
+            <div class="hidden">
 
-    <!-- Div for the photo upload area. I didn't flesh this out too much, as I know Mark will need to add Divs and Divs and Divs for bootstrap -->
-    <!-- I did however add the divs that will contain the individual elements, Mark can wrap this in whatever columns/rows he needs to. I just wanted the ID to be established for each -->
-    <div>
-      <!-- Div for the explanation text, telling the user to submit a photo or whatever instructions -->
-      <!-- Extraneous comma; FTFY -->
-      <div id='instructionsDiv'>
-        <p id='instructions'>
-
-        </p>
-      </div>
-      <!-- Div for the button and form -->
-      <div id='submitBtnDiv'>
-        <!-- URL Form -->
-        <label for="inputboxID">The third-party hosted URL goes here<i class="fa fa-arrow-down">.</i></label>
-        <input class="form-control" id="inputboxID" type="text">
-        <!-- Submit button -->
-        <button id='submitBtn'>Submit Photo</button>
+            </div>            
+           </div>
+         </div>          
+        </div>
       </div>
     </div>
+  <div id='resultsArea'>
+    <div class="container"> 
+      <div class="row">
+          <div class="d-flex justify-content-center">
+        <!-- <div class="card-deck"> -->
+          <div class="card">
+              <img class="image-thumbnail" id="userPhoto" src="assets/images/dustin.jpg" alt="Thumbnail image">
+              <div class="card-body"> 
+                <h5 class="card-title">Dustin</h5>              
+              </div>
+          </div>          
+          <div class="card">
+              <img class="image-thumbnail" id="celebPhoto" src="assets/images/zach.jpg" alt="Celebrity photo">
+              <div class="card-body">
+                <h5 class="card-title" id="celebName">Zach Galafianakis</h5>
+              </div>
+            </div>
+          <!-- Horoscope example text...id created -->
+            <div class="card" id="celebHoroscope" alt="Celebrity horoscope">
+              <div class="card-header"><b>Celebrity Horoscope<br>Libra:</b></div>
+                <!-- <div class="card-body"> -->
+                  <h6 class="card-title">People born under this sign exude elegance, charm, and good taste. They are naturally kind, generous, and are lovers of beauty and harmony.</h6>
+                
+            </div>
+        </div> 
+      </div> 
+    </div>
 
-    <!-- Div for the dynamically generated previous user matches. This will likely just be an empty div in the HTML? -->
-    <!-- We will add to it via Javascript, adding bootstrap classes as necessary to build rows and columns as we need them -->
-    <!-- Perry mentioned possibly framing this out in HTML instead, and just hiding the elements. This could work, ONLY if we are willing to have a static number of elements. -->
-    <!-- For example, we only display the most recent 10 user submissions. Then we have a HTML skeleton of 10 elements, to which we use JS or jQuery to add urls, text content, etc. -->
-    <!-- Discuss on saturday! -->
-    <div id='userMatchesDiv'>
-
-    <!-- This is the change im using for the test -->
+  <!-- put this inside a container -->
+  <div id='userMatchesDiv'>      
+      <!--above id will remain empty -->   
     <div class='row'>
       <div class='col-4'>
         <!-- <img src='userImg.jpg'> -->
@@ -58,36 +85,42 @@
       <div class='col-4'>
         <p id="horoscopeID">Horoscope. It's a horoscope. Horoscope. It's a horoscope.Horoscope. It's a horoscope.Horoscope. It's a horoscope.Horoscope. It's a horoscope.</p>
       </div>
-
-
     </div>
-  </div>
 
 
     <!-- Div for the second screen, the user results -->
     <!-- Once again, Mark can flesh out the appropriate cols/rows, I just wanted to attach IDs so we can use them in JS -->
-    <div id='userResults'>
+    <!-- <div id='userResults'>
+      <div class="card-deck">
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Your Photo</h5>
+            <p class="card-text">Your Name</p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Celebrity Photo</h5>
+            <p class="card-text">Celebrity Name</p> 
+            
+          </div>
+        </div>
+      </div>
+    </div> -->
+
       
-      <!-- Div where we display the user photo -->
-      <div id='userPhotoDiv'>
 
-      </div>
-      <!-- Div where we display the celeb photo -->
-      <div id='celebPhotoDiv'>
-
-      </div>
-      <!-- Div where we display the horoscope -->
-      <div id='celebHoroscope'></div>
-    </div>
-
-    <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
     <footer id='footer'>
-
+      <div class="footer bg-secondary">
+        <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
 
     </footer>
 
-
   </div>
+
+
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.min.js"></script>
@@ -105,8 +138,9 @@
   };
   firebase.initializeApp(config);
   </script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src='assets/js/script.js'></script>
 
-</body>
+  </body>
 </html>

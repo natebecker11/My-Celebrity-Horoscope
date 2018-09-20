@@ -1,0 +1,29 @@
+.jumbotron {
+    background-image: url("../images/horoscope2.jpg")
+}
+
+.checkbox {
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 30px;
+}  
+  
+.card {
+	height: 200px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9);
+    margin: 5.2em; 
+}
+
+.hidden {
+    display: none;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+}
