@@ -7,17 +7,6 @@ $(document).ready(function() {
   $('#uploadBtn').hide();
 })
 
-var ajaxTest = function() {
-  $.ajax({
-    method: 'POST',
-    url: 'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=' + apiKey +  '&api_secret=' + apiSecret + '&image_url=' + 'https://i.imgur.com/goSHzjB.png'
-    
-  }).then(function(result) {
-    console.log(result);
-  }).catch(function(error) {
-    console.log(error)
-  })
-}
 
 // function to update the database after a user match has been made, to record that match
 var dbPush = function (celebName, horoscope, celebUrl, userUrl, date) {
@@ -129,24 +118,6 @@ database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value"
   }
 })
 
-// function to create columns
-// function createCols(newCol){
-//   var newCol = $("th").append(
-//     $("<td>").text(),
-//   );
-//   $("#userResults > tbody > th").append(newCol);
-// }
-
-
-// function to create and append a row (We can change this if our intention is to add multiple rows with one table heading. )
-// function createRow(newRow){
-//   var newRow = $("<tr>").append(
-//     $("<td>").text(newCol),
-//     $("<td>").text(newCol),
-//     $("<td>").text(newCol),
-//   );
-//   $("#userResults > tbody").append(newRow);
-// }
 
 
 
@@ -238,14 +209,26 @@ takeObject(testObject);
 
     uploadTask.on('state_changed', function(snapshot) {
       // observe progess, pause, resume
+      // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      // console.log('Upload is ' + progress + '% done');
+      // switch (snapshot.state) {
+      //   case firebase.storage.TaskState.PAUSED: // or 'paused'
+      //     console.log('Upload is paused');
+      //     break;
+      //   case firebase.storage.TaskState.RUNNING: // or 'running'
+      //     console.log('Upload is running');
+      //     break;
+      // }
       
     }, function (error) {
       // handle errors
     }, function() {
       // handle successful uploads, eg get the download url
       // fix this, won't console log, but will store
-      var downloadURL = uploadTask.snapshot.downloadURL;
-      console.log(downloadURL)
+      uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+        console.log('File available at ', downloadURL)
+      })
+      // console.log(uploadTask.snapshot.downloadURL)
     })
     
   }
