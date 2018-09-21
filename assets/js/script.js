@@ -108,7 +108,7 @@ $(document).on("click", "#submitBtn", function() {
 database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
   for (var info in snapshot.val()) {
     // takeObject(snapshot[i])}
-    // console.log(snapshot.val()[info]);
+    takeObject(snapshot.val()[info]);
   }
 })
 
@@ -164,15 +164,15 @@ var takeObject = function(object){
   $(pTag).addClass('resultBox');
 
   var col = $("<div>");
-  $(col).addClass('col-4');
+  $(col).addClass('col offset-1');
   $(col).append(image);
 
   var col2 = $("<div>");
-  $(col2).addClass('col-4');
+  $(col2).addClass('col');
   $(col2).append(image2);
 
   var col3 = $("<div>");
-  $(col3).addClass('col-4');
+  $(col3).addClass('col');
   $(col3).append(pTag);
 
   console.log(object);
@@ -182,8 +182,7 @@ var takeObject = function(object){
   $(createRow).append(col, col2, col3);
 
   $(createRow).appendTo($("#userMatchesDiv"));
-
-  
+  $("<br>").appendTo($("#userMatchesDiv"));
 };
 
 takeObject(testObject);
