@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Celebrity Horoscope!</title>
+  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='assets/css/style.css'>
@@ -15,7 +16,7 @@
   <!-- Main container for all content -->
   <div class='container-fluid'>    
     <div class='jumbotron text-center' id='headerJumbotron'>  
-      <h1 id='mainHeader'>My Celebrity Horoscope!</h1>
+      <h1 id='mainHeader'><strong>My Celebrity Horoscope!</strong></h1>
       <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
     </div>
   </div>
@@ -25,16 +26,18 @@
         <div class="checkbox">            
           <label>
               <input type="checkbox" id="consentToggle" checked data-toggle="toggle" data-size="small">
-                  Click here to allow use of your photo in our celebrity match gallery
+                  I allow use of my photo in our celebrity match gallery
           </label>
               <div id='submitBtnDiv'>
                 <!-- Submit button need an identifier to read toggle for use or not in gallery-->
                 <!-- URL Form -->
                 <label for="inputboxID"><i class="fa fa-arrow-down"></i> Please insert the link to your photo here <i class="fa fa-arrow-down"></i></label>
-                <input class="form-control" id="inputboxID" type="text">
+                <input class="form-control" id="inputboxID" type="text" placeholder="Your Image URL>>" >
+                <br>
                 <button id='submitBtn'>Submit Your Photo</button>
               </div>
             <div id='instructionsDiv'>
+              <br>
             <p id='instructions'>Please download your photo by inputing the URL link.</p>
             <!-- <div class="hidden"></div>             -->
            </div>
@@ -60,7 +63,7 @@
               </div>
             </div>
           <!-- Horoscope example text...id created -->
-            <div class="card"  alt="Celebrity horoscope">
+            <div class="card"  alt="Celebrity horoscope" id="cardMain">
               <div class="card-header"><b>Celebrity Horoscope<br><span id='celebZodiac'>Libra</span>:</b></div>
                 <!-- <div class="card-body"> -->
                   <h6 class="card-title" id="celebHoroscope">People born under this sign exude elegance, charm, and good taste. They are naturally kind, generous, and are lovers of beauty and harmony.</h6>
@@ -69,7 +72,7 @@
         </div> 
       </div> 
     </div>
-
+<br>
   <!-- put this inside a container -->
   <div id='userMatchesDiv' class="container justify-content-center">      
   </div>

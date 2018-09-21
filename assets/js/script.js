@@ -111,7 +111,9 @@ $(document).on("click", "#submitBtn", function() {
   }
   // } else {$("label[for='inputboxID']").text("The image must be between 48x48 pixels and 4096x4096 pixels OR the image URL is not valid.")} 
   else {
+    
     $("label[for='inputboxID']").text("The URL must end with .jpg, .jpeg, or .png.")
+    $("label[for='inputboxID']").addClass("elseInputboxID")
   }
 });
 
