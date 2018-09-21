@@ -148,36 +148,42 @@ var takeObject = function(object){
     var userURL= object.userImg;
     var celebURL= object.celebImg;
     var hororscopeString= object.horoscope;
-    
+
     var image = $("<img>");
     var image2 = $("<img>");
     var pTag = $("<p>");
     
-
+  
     //created an element of image with a source of the variable i made
   $(image).attr('src', userURL);
+  $(image).addClass('resultBox');
   // $(image).attr('alt', userURL);
   $(image2).attr('src', celebURL);
+  $(image2).addClass('resultBox');
   $(pTag).text(hororscopeString);
+  $(pTag).addClass('resultBox');
 
   var col = $("<div>");
   $(col).addClass('col-4');
   $(col).append(image);
 
   var col2 = $("<div>");
-  $(col).addClass('col-4');
-  $(col).append(image2);
+  $(col2).addClass('col-4');
+  $(col2).append(image2);
 
   var col3 = $("<div>");
-  $(col).addClass('col-4');
-  $(col).append(pTag);
+  $(col3).addClass('col-4');
+  $(col3).append(pTag);
 
   console.log(object);
 
   var createRow = $("<div>");
-  $(createRow).addClass('row');
+  $(createRow).addClass('row betterRow');
   $(createRow).append(col, col2, col3);
+
   $(createRow).appendTo($("#userMatchesDiv"));
+
+  
 };
 
 takeObject(testObject);
@@ -195,3 +201,7 @@ takeObject(testObject);
 // append a column to a row
 
 // create a row comprised of columns, and append it to a target div`
+
+//Get display looking right
+  //get images to reveal as 200 * 200
+  //add alt tags
