@@ -1,3 +1,6 @@
+
+
+
 .jumbotron {
     background-image: url("../images/horoscope2.jpg")
 }
@@ -26,4 +29,19 @@
    bottom: 0;
    width: 100%;
    text-align: center;
+}
+
+.resultBox {
+    max-width: 200px;
+    height: auto;
+}
+
+.row.betterRow {
+    width: 100%;
+}
+
+#userMatchesDiv{
+    border: solid 5px silver;
+    background-color: black;
+    color: white;
 }
