@@ -73,6 +73,11 @@ var processUserMatch = function () {
 
 }
 
+var validate = simplyValid({
+  schema: 'isNotTooShort',
+  minLen: 16
+})
+
 $(document).on("click", "#submitBtn", function() {
   // I really still do not understand dates, so potentially inefficient but working code, go:
   var formatDate = dateFns.format;
@@ -80,7 +85,8 @@ $(document).on("click", "#submitBtn", function() {
 
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
   var userImageUrl = $('#inputboxID').val().trim();
-  if (typeof userImageUrl === "string" && isNotTooShort(15, userImageUrl) && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
+  console.log(validate(userImageUrl))
+  if (typeof userImageUrl === "string" && validate(userImageUrl).isValid && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
     // var tempimg = $("<img>").attr(src, userImageUrl)
     // if (48 < tempimg[0].clientWidth < 4096 && 48 < tempimg[0].clientHeight < 4096) {
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
