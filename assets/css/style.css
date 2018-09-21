@@ -142,3 +142,20 @@ padding-bottom: 10px;
     border: double 1px silver;
 } */
 
+label.upload-group {
+    width: 100px;
+    height: 40px;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    background-color: blue;
+}
+
+#userFile {
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}

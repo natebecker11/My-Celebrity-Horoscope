@@ -1,7 +1,11 @@
 var apiKey = 'pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP'
 var apiSecret = 'NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j'
 var database = firebase.database();
+var selectedFile;
 
+$(document).ready(function() {
+  $('#uploadBtn').hide();
+})
 
 var ajaxTest = function() {
   $.ajax({
@@ -217,3 +221,31 @@ takeObject(testObject);
 //Get display looking right
   //get images to reveal as 200 * 200
   //add alt tags
+
+
+  $('#userFile').on('change', function(event) {
+    selectedFile = event.target.files[0];
+    $("#uploadBtn").show();
+    
+  })
+
+  var uploadUserPhoto = function() {
+    // store file name
+    var fileName = selectedFile.name;
+    // creat root ref
+    var storageRef = firebase.storage().ref('/userImages/' + fileName + '/');
+    var uploadTask = storageRef.put(selectedFile);
+
+    uploadTask.on('state_changed', function(snapshot) {
+      // observe progess, pause, resume
+      
+    }, function (error) {
+      // handle errors
+    }, function() {
+      // handle successful uploads, eg get the download url
+      // fix this, won't console log, but will store
+      var downloadURL = uploadTask.snapshot.downloadURL;
+      console.log(downloadURL)
+    })
+    
+  }
