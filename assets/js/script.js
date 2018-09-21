@@ -28,7 +28,7 @@ var dbPush = function (celebName, horoscope, celebUrl, userUrl, date) {
   })
 }
 // function to display the user match 
-var showMatch = function (celebName, horoscope, celebUrl, userUrl) {
+var showMatch = function (celebName, horoscope, celebUrl, userUrl, sign) {
   console.log('celebname= ' + celebName + ' horoscope= ' + horoscope + ' celebUrl= ' + celebUrl + ' userUrl= ' + userUrl)
   $('#userPhoto').attr('src', userUrl);
   $('#celebPhoto').attr('src', celebUrl);
@@ -36,6 +36,7 @@ var showMatch = function (celebName, horoscope, celebUrl, userUrl) {
   // $('#celebHoroscope')
   $('#celebNameDisplay').text(celebName);
   $('#celebHoroscope').text(horoscope);
+  $('#celebZodiac').text(sign);
 }
 
 // function to call the aztro API for a horoscope
@@ -50,7 +51,7 @@ var passAztro = function (name, sign, celebUrl, userUrl, date) {
     // call the data update function to update the db
     dbPush(name, horoscope, celebUrl, userUrl, date);
     // call the user display function to display the relevant data to the user
-    showMatch(name, horoscope, celebUrl, userUrl)
+    showMatch(name, horoscope, celebUrl, userUrl, sign)
   })
 }
 
