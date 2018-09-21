@@ -80,9 +80,9 @@ $(document).on("click", "#submitBtn", function() {
 
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
   var userImageUrl = $('#inputboxID').val().trim();
-  // This validator does not use Simply Valid because it is focused on the ending, which that lib does not do.
-  if (typeof userImageUrl === "string" && (userImageUrl.endsWith('jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
-
+  if (typeof userImageUrl === "string" && isNotTooShort(15, userImageUrl) && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
+    // var tempimg = $("<img>").attr(src, userImageUrl)
+    // if (48 < tempimg[0].clientWidth < 4096 && 48 < tempimg[0].clientHeight < 4096) {
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
     var urlSubmission =
       "https://api-us.faceplusplus.com/facepp/v3/search?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" + userImageUrl
@@ -101,6 +101,10 @@ $(document).on("click", "#submitBtn", function() {
       .catch(function(error) {
         console.log(error);
       });
+  }
+  // } else {$("label[for='inputboxID']").text("The image must be between 48x48 pixels and 4096x4096 pixels OR the image URL is not valid.")} 
+  else {
+    $("label[for='inputboxID']").text("The URL must end with .jpg, .jpeg, or .png.")
   }
 });
 
