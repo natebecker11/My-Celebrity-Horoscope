@@ -215,6 +215,7 @@ var takeObject = function(object){
   // $(image).attr('alt', userURL);
   $(image2).attr('src', celebURL);
   $(image2).addClass('resultBox');
+  $(image2).attr('title', object.celebName)
   $(pTag).text(hororscopeString);
   $(pTag).addClass('resultBox');
 
