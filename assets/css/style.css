@@ -156,3 +156,7 @@ label.upload-group {
     position: absolute;
     z-index: -1;
 }
+
+#submitArea {
+    min-height: 325px;
+}
