@@ -179,9 +179,8 @@ $(document).on("click", "#submitBtn", function() {
 
 // database listener for whenever a new match is added to the matches DB
 database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
+  $('#userMatchesDiv').empty();
   for (var info in snapshot.val()) {
-    // takeObject(snapshot[i])}
-    
     takeObject(snapshot.val()[info]);
   }
 })
