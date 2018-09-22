@@ -17,6 +17,8 @@ var validate = simplyValid({
 $(document).ready(function() {
   $('#uploadBtn').hide();
   $('#submitBtnDiv').hide();
+  $('#loadingGifDiv').hide();
+  // $('#resultsArea').hide();
 })
 
 
@@ -42,6 +44,8 @@ var showMatch = function (celebName, horoscope, celebUrl, userUrl, sign) {
   $('#celebNameDisplay').text(celebName);
   $('#celebHoroscope').text(horoscope);
   $('#celebZodiac').text(sign);
+  $('#loadingGifDiv').hide();
+  $('#userResultsDiv').show();
 }
 
 // function to call the aztro API for a horoscope
@@ -108,7 +112,9 @@ var uploadUserPhoto = function() {
       // grab and format the date
       var formatDate = dateFns.format;
       var today = formatDate(new Date(), 'MM/DD/YYYY');
-      
+      //add show hide for loadingGifDiv here
+      $("#loadingGifDiv").show();
+      $("#submitArea").hide();
       // encode the use image URL for the purpose of the API request. This allows for URLs with special characters
       var encodedUserImage = encodeURI(userImageUrl);
       var urlSubmission =
@@ -144,6 +150,10 @@ $(document).on("click", "#submitBtn", function() {
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
   var userImageUrl = $('#inputboxID').val().trim();
   console.log(validate(userImageUrl))
+  //add show hide for loadingGifDiv here
+  $("#loadingGifDiv").show();
+  $("#submitArea").hide();
+
   if (typeof userImageUrl === "string" && validate(userImageUrl).isValid && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
     // var tempimg = $("<img>").attr(src, userImageUrl)
     // if (48 < tempimg[0].clientWidth < 4096 && 48 < tempimg[0].clientHeight < 4096) {
@@ -164,6 +174,8 @@ $(document).on("click", "#submitBtn", function() {
         console.log(faceToken);
         // publish the results to the firebase db
         grabCelebInfo(faceToken, userImageUrl, today);
+      
+
       })
       .catch(function(error) {
         console.log(error);
