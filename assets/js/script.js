@@ -6,6 +6,7 @@ var database = firebase.database();
 // global var for user photo uploads
 var selectedFile;
 
+
 // define validation criteria
 var validate = simplyValid({
   schema: 'isNotTooShort',
@@ -34,8 +35,8 @@ var dbPush = function (celebName, horoscope, celebUrl, userUrl, date) {
 // function to display the user match 
 var showMatch = function (celebName, horoscope, celebUrl, userUrl, sign) {
   console.log('celebname= ' + celebName + ' horoscope= ' + horoscope + ' celebUrl= ' + celebUrl + ' userUrl= ' + userUrl)
-  $('#userPhoto').attr('src', userUrl);
-  $('#celebPhoto').attr('src', celebUrl);
+  $('#userPhoto').attr('src', userUrl).addClass('resultBox');
+  $('#celebPhoto').attr('src', celebUrl).addClass('resultBox');
   // $('<h3>').text('YOU MATCHED WITH ' + celebName.toUpperCase() + '!!!').appendTo($('#celebPhotoDiv'));
   // $('#celebHoroscope')
   $('#celebNameDisplay').text(celebName);
@@ -45,6 +46,8 @@ var showMatch = function (celebName, horoscope, celebUrl, userUrl, sign) {
 
 // function to call the aztro API for a horoscope
 var passAztro = function (name, sign, celebUrl, userUrl, date) {
+  // var for whether the consent checkbox is checked  
+  var consentChecked = $('#consentToggle')[0].checked
   // make a call to the aztro db with the sign
   $.ajax({
     method: 'POST',
@@ -52,10 +55,13 @@ var passAztro = function (name, sign, celebUrl, userUrl, date) {
   }).then(function(response) {
     // bind the horoscope
     var horoscope = response['description'];
-    // call the data update function to update the db
-    dbPush(name, horoscope, celebUrl, userUrl, date);
     // call the user display function to display the relevant data to the user
     showMatch(name, horoscope, celebUrl, userUrl, sign)
+    // check whether the user consents to their photo being added to gallery
+    if (consentChecked) {    
+      // call the data update function to update the db
+      dbPush(name, horoscope, celebUrl, userUrl, date);
+    }
   })
 }
 
@@ -272,3 +278,6 @@ var takeObject = function(object){
     $('#submitBtnDiv').show();
     $('#uploadArea').hide();
   })
+
+
+

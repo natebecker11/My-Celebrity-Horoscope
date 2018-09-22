@@ -27,11 +27,13 @@ body{
 }  
   
 .card {
-	height: 200px;
+	
     width: 200px;
     text-align: center;
     box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.9);
     margin: 5.2em; 
+    background-color: rgb(255, 56, 149);
+    
 }
 
 .card:hover{
@@ -159,4 +161,16 @@ label.upload-group {
 
 #submitArea {
     min-height: 250px;
+}
+
+.imgWrapper {
+    height: 200px;
+    width: 200px;
+    /* overflow: hidden!important; */
+}
+
+.resultImage {
+    display: block;
+    width: 100%;
+    height: auto;
 }
