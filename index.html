@@ -23,28 +23,47 @@
   <div class="container-fluid" id="submitArea">
     <div class="row">
       <div class="col-md-12">
-        <div class="checkbox">            
+        <div class="checkbox">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name='uploadMethods' id="uploadFromDevice" value="upload" checked>
+            <label class="form-check-label" for="uploadFromDevice">
+              Upload From Your Device
+            </label>
+          </div>
+          <div class='form-check form-check-inline'>
+            <input class="form-check-input" type="radio" name='uploadMethods' id="uploadFromUrl" value="useUrl">
+            <label class="form-check-label" for="uploadFromUrl">
+              Use An Image Hosted Elsewhere 
+            </label>
+          </div>
+          <div id='submitBtnDiv'>
+            <!-- Submit button need an identifier to read toggle for use or not in gallery-->
+            <!-- URL Form -->
+            <label for="inputboxID"><i class="fa fa-arrow-down"></i> Please insert the link to your photo here <i class="fa fa-arrow-down"></i></label>
+            <input class="form-control" id="inputboxID" type="text" placeholder="Your Image URL>>" >
+            <br>
+            <button id='submitBtn'>Submit Your Photo</button>
+          </div>
+          <div class='uploadArea' id='uploadArea'>
+            <h2>Upload Your Pic!</h2>
+            <label class='upload-group submissionBtns'>
+              Upload Pic
+              <input type='file' class='upload-group submissionBtns' id='userFile'>
+            </label>
+            <button type='button' class='submissionBtns' id='uploadBtn' onclick='uploadUserPhoto()'>Submit Your Photo</button>
+          </div>
           <label>
               <input type="checkbox" id="consentToggle" checked data-toggle="toggle" data-size="small">
                   I allow use of my photo in our celebrity match gallery
           </label>
-              <div id='submitBtnDiv'>
-                <!-- Submit button need an identifier to read toggle for use or not in gallery-->
-                <!-- URL Form -->
-                <label for="inputboxID"><i class="fa fa-arrow-down"></i> Please insert the link to your photo here <i class="fa fa-arrow-down"></i></label>
-                <input class="form-control" id="inputboxID" type="text" placeholder="Your Image URL>>" >
-                <br>
-                <button id='submitBtn'>Submit Your Photo</button>
-              </div>
-            <div id='instructionsDiv'>
+            <!-- <div id='instructionsDiv'>
               <br>
-            <p id='instructions'>Please download your photo by inputing the URL link.</p>
-            <!-- <div class="hidden"></div>             -->
-           </div>
+           </div> -->
          </div>          
         </div>
       </div>
     </div>
+
   <div id='resultsArea'>
     <div class="container"> 
       <div class="row">

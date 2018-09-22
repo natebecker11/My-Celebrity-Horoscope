@@ -1,19 +1,23 @@
+// API keys for face++
 var apiKey = 'pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP'
 var apiSecret = 'NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j'
+// call the database
 var database = firebase.database();
+// global var for user photo uploads
+var selectedFile;
 
+// define validation criteria
+var validate = simplyValid({
+  schema: 'isNotTooShort',
+  minLen: 16
+})
 
-var ajaxTest = function() {
-  $.ajax({
-    method: 'POST',
-    url: 'https://api-us.faceplusplus.com/facepp/v3/detect?api_key=' + apiKey +  '&api_secret=' + apiSecret + '&image_url=' + 'https://i.imgur.com/goSHzjB.png'
-    
-  }).then(function(result) {
-    console.log(result);
-  }).catch(function(error) {
-    console.log(error)
-  })
-}
+// hide certain elements on page load
+$(document).ready(function() {
+  $('#uploadBtn').hide();
+  $('#submitBtnDiv').hide();
+})
+
 
 // function to update the database after a user match has been made, to record that match
 var dbPush = function (celebName, horoscope, celebUrl, userUrl, date) {
@@ -65,20 +69,67 @@ var grabCelebInfo = function (token, userUrl, date) {
   })     
 }
 
+// function for the 'submit file from pc' button
+var uploadUserPhoto = function() {
+  // store file name
+  var fileName = selectedFile.name;
+  // creat root ref
+  var storageRef = firebase.storage().ref('/userImages/' + fileName + '/');
+  var uploadTask = storageRef.put(selectedFile);
 
+  // listener for a change in the userImages storage ref
+  uploadTask.on('state_changed', function(snapshot) {
+    // observe progess, pause, resume
+    // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    // console.log('Upload is ' + progress + '% done');
+    // switch (snapshot.state) {
+    //   case firebase.storage.TaskState.PAUSED: // or 'paused'
+    //     console.log('Upload is paused');
+    //     break;
+    //   case firebase.storage.TaskState.RUNNING: // or 'running'
+    //     console.log('Upload is running');
+    //     break;
+    // }
+    
+  }, function (error) {
+    // handle errors
+    console.log(error)
+  }, function() {
+    // handle successful uploads, eg get the download url
 
+    // retrieve the download URL for the file just added to storage
+    uploadTask.snapshot.ref.getDownloadURL().then(function(userImageUrl) {
+      // grab and format the date
+      var formatDate = dateFns.format;
+      var today = formatDate(new Date(), 'MM/DD/YYYY');
+      
+      // encode the use image URL for the purpose of the API request. This allows for URLs with special characters
+      var encodedUserImage = encodeURI(userImageUrl);
+      var urlSubmission =
+    "https://api-us.faceplusplus.com/facepp/v3/search?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" + encodedUserImage
+    
 
-
-// function to process the data from the returned AJAX and the user input
-var processUserMatch = function () {
-
+      $.ajax({
+        method: "POST",
+        url: urlSubmission
+      })
+        .then(function(result) {
+          var faceToken = result['results'][0]['face_token']
+          console.log(faceToken);
+          // publish the results to the firebase db
+          grabCelebInfo(faceToken, userImageUrl, today);
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+    })
+    // console.log(uploadTask.snapshot.downloadURL)
+  })
+  
 }
 
-var validate = simplyValid({
-  schema: 'isNotTooShort',
-  minLen: 16
-})
 
+// event listener for the submit button
 $(document).on("click", "#submitBtn", function() {
   // I really still do not understand dates, so potentially inefficient but working code, go:
   var formatDate = dateFns.format;
@@ -90,9 +141,12 @@ $(document).on("click", "#submitBtn", function() {
   if (typeof userImageUrl === "string" && validate(userImageUrl).isValid && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
     // var tempimg = $("<img>").attr(src, userImageUrl)
     // if (48 < tempimg[0].clientWidth < 4096 && 48 < tempimg[0].clientHeight < 4096) {
+
+    // encoding User Url, this ensures that URLs with special characters function correctly
+    var encodedUserImage = encodeURI(userImageUrl);
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
     var urlSubmission =
-      "https://api-us.faceplusplus.com/facepp/v3/search?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" + userImageUrl
+      "https://api-us.faceplusplus.com/facepp/v3/search?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" + encodedUserImage
       
 
     $.ajax({
@@ -103,7 +157,7 @@ $(document).on("click", "#submitBtn", function() {
         var faceToken = result['results'][0]['face_token']
         console.log(faceToken);
         // publish the results to the firebase db
-        grabCelebInfo(faceToken, userImageUrl, today);
+        grabCelebInfo(faceToken, encodedUserImage, today);
       })
       .catch(function(error) {
         console.log(error);
@@ -117,42 +171,25 @@ $(document).on("click", "#submitBtn", function() {
   }
 });
 
-// The userMatches may need to change if you have a different file system in mind...
+// database listener for whenever a new match is added to the matches DB
 database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
   for (var info in snapshot.val()) {
     // takeObject(snapshot[i])}
+    
     takeObject(snapshot.val()[info]);
   }
 })
 
-// function to create columns
-// function createCols(newCol){
-//   var newCol = $("th").append(
-//     $("<td>").text(),
-//   );
-//   $("#userResults > tbody > th").append(newCol);
+
+
+
+
+
+// var testObject = {
+//   userImg: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
+//   celebImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/1200px-CNN.svg.png',
+//   horoscope: 'this is a horoscope'
 // }
-
-
-// function to create and append a row (We can change this if our intention is to add multiple rows with one table heading. )
-// function createRow(newRow){
-//   var newRow = $("<tr>").append(
-//     $("<td>").text(newCol),
-//     $("<td>").text(newCol),
-//     $("<td>").text(newCol),
-//   );
-//   $("#userResults > tbody").append(newRow);
-// }
-
-
-
-
-
-var testObject = {
-  userImg: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
-  celebImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/1200px-CNN.svg.png',
-  horoscope: 'this is a horoscope'
-}
 
 
 var takeObject = function(object){
@@ -198,7 +235,7 @@ var takeObject = function(object){
   $("<br>").appendTo($("#userMatchesDiv"));
 };
 
-takeObject(testObject);
+// takeObject(testObject);
 // create elements from an ojbect of data$("<>").text().val();
  // define a function that takes an object  as an argument
    // parse the data inside
@@ -217,3 +254,21 @@ takeObject(testObject);
 //Get display looking right
   //get images to reveal as 200 * 200
   //add alt tags
+
+  // event listener for when a user adds a file
+  $('#userFile').on('change', function(event) {
+    selectedFile = event.target.files[0];
+    $("#uploadBtn").show();
+    
+  })
+
+  // event listeners for when the photo submission method radio toggles
+  $('#uploadFromDevice').on('click', function() {
+    $('#submitBtnDiv').hide()
+    $('#uploadArea').show()
+  })
+
+  $('#uploadFromUrl').on('click', function() {
+    $('#submitBtnDiv').show();
+    $('#uploadArea').hide();
+  })
