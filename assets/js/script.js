@@ -265,6 +265,7 @@ var takeObject = function(object){
   $('#userFile').on('change', function(event) {
     selectedFile = event.target.files[0];
     $("#uploadBtn").show();
+    $("#uploadFileBtn").hide();
     
   })
 
