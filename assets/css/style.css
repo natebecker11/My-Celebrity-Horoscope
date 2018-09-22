@@ -200,3 +200,8 @@ label.upload-group {
 .d-flex {
     padding-top: 0em;
 }
+
+.blockElement {
+   display: block;
+   
+}
