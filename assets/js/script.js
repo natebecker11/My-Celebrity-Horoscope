@@ -163,7 +163,7 @@ $(document).on("click", "#submitBtn", function() {
         var faceToken = result['results'][0]['face_token']
         console.log(faceToken);
         // publish the results to the firebase db
-        grabCelebInfo(faceToken, encodedUserImage, today);
+        grabCelebInfo(faceToken, userImageUrl, today);
       })
       .catch(function(error) {
         console.log(error);
