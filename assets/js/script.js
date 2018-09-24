@@ -45,7 +45,7 @@ var showMatch = function (celebName, horoscope, celebUrl, userUrl, sign) {
   $('#celebHoroscope').text(horoscope);
   $('#celebZodiac').text(sign);
   $('#loadingGifDiv').hide();
-  $('#userResultsDiv').show();
+  $('#resultsArea').show();
 }
 
 // function to call the aztro API for a horoscope
@@ -81,6 +81,11 @@ var grabCelebInfo = function (token, userUrl, date) {
 
 // function for the 'submit file from pc' button
 var uploadUserPhoto = function() {
+  //add show hide for loadingGifDiv here
+  $("#loadingGifDiv").show();
+  $("#submitArea").hide();
+  $('#resultsArea').hide();
+  $('#userPhoto').attr('src', 'assets/images/black.png')
   // store file name
   var fileName = selectedFile.name;
   // creat root ref
@@ -99,9 +104,7 @@ var uploadUserPhoto = function() {
       // grab and format the date
       var formatDate = dateFns.format;
       var today = formatDate(new Date(), 'MM/DD/YYYY');
-      //add show hide for loadingGifDiv here
-      $("#loadingGifDiv").show();
-      $("#submitArea").hide();
+
       // encode the use image URL for the purpose of the API request. This allows for URLs with special characters
       var encodedUserImage = encodeURI(userImageUrl);
       var urlSubmission =
@@ -137,6 +140,7 @@ $(document).on("click", "#submitBtn", function() {
   if (typeof userImageUrl === "string" && validate(userImageUrl).isValid && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
     $("#loadingGifDiv").show();
     $("#submitArea").hide();
+    $('#resultsArea').hide();
     // encoding User Url, this ensures that URLs with special characters function correctly
     var encodedUserImage = encodeURI(userImageUrl);
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
