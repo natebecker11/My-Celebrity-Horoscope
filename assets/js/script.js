@@ -151,10 +151,11 @@ $(document).on("click", "#submitBtn", function() {
   var userImageUrl = $('#inputboxID').val().trim();
   console.log(validate(userImageUrl))
   //add show hide for loadingGifDiv here
-  $("#loadingGifDiv").show();
-  $("#submitArea").hide();
+  
 
   if (typeof userImageUrl === "string" && validate(userImageUrl).isValid && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
+    $("#loadingGifDiv").show();
+    $("#submitArea").hide();
     // var tempimg = $("<img>").attr(src, userImageUrl)
     // if (48 < tempimg[0].clientWidth < 4096 && 48 < tempimg[0].clientHeight < 4096) {
 
@@ -184,7 +185,7 @@ $(document).on("click", "#submitBtn", function() {
   // } else {$("label[for='inputboxID']").text("The image must be between 48x48 pixels and 4096x4096 pixels OR the image URL is not valid.")} 
   else {
     
-    $("label[for='inputboxID']").text("The URL must end with .jpg, .jpeg, or .png.")
+    $("label[for='inputboxID']").text("The URL must end with .jpg, .jpeg, or .png. Having issues? Download the image first, then upload!")
     $("label[for='inputboxID']").addClass("elseInputboxID")
   }
 });
