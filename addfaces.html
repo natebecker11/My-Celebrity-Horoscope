@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Faceset Maintenence System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <div class='container'>
+    <h2>Upload a face from a URL</h2>
+    <form id='urlForm'>
+      <div class='form-group'>
+        <label for='urlInput'>URL:</label>
+        <input type='text' class='form-control' id='urlInput'>
+      </div>
+      <div class='form-group'>
+        <label for='nameInput'>Name:</label>
+        <input type='text' class='form-control' id='nameInput'>
+      </div>
+      <div class='form-group'>
+        <label for='signInput'>Sign:</label>
+        <input type='text' class='form-control' id='signInput'>
+      </div>
+      <div class='form-group'>
+        <input type='button' id='submitBtn' class='btn btn-primary' value='Submit'>
+      </div>
+      </form>
+
+    <p id='confirmationBox'>
+    </p>
+    <img src='' id='celebPic'>
+    <p id='celebName'></p>
+    <p id='celebSign'></p>
+    <p id='celebToken'></p>
+  </div>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>  
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-storage.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyB3OK_gHk-gUawA0rVSWZH-P4IIHL9BooM",
+        authDomain: "my-celebrity-horoscope.firebaseapp.com",
+        databaseURL: "https://my-celebrity-horoscope.firebaseio.com",
+        projectId: "my-celebrity-horoscope",
+        storageBucket: "my-celebrity-horoscope.appspot.com",
+        messagingSenderId: "290575991301"
+      };
+      firebase.initializeApp(config);
+    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src='assets/js/addfaces.js'></script>
+</body>
+</html>

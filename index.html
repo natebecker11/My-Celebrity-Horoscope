@@ -5,78 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Celebrity Horoscope!</title>
+  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
+  
+  
 <body>
   <!-- Main container for all content -->
-  <div class='container'>
-    <!-- Jumbotron to display headers across screens -->
-    <div class='jumbotron' id='headerJumbotron'>
-      <!-- main header, can change contents -->
-      <h1 id='mainHeader'>My Celebrity Horoscope!</h1>
-      <!-- sub header, can change contents -->
+  <div class='container-fluid'>    
+    <div class='jumbotron text-center' id='headerJumbotron'>  
+      <h1 id='mainHeader'><strong>My Celebrity Horoscope!</strong></h1>
       <h3 id='subMainHeader'>Where You Can Find Your Celebrity Astrological Match!</h3>
     </div>
-
-    <!-- Div for the photo upload area. I didn't flesh this out too much, as I know Mark will need to add Divs and Divs and Divs for bootstrap -->
-    <!-- I did however add the divs that will contain the individual elements, Mark can wrap this in whatever columns/rows he needs to. I just wanted the ID to be established for each -->
-    <div>
-      <!-- Div for the explanation text, telling the user to submit a photo, or whatever instructions -->
-      <div id='instructionsDiv'>
-        <p id='instructions'>
-
-        </p>
-      </div>
-      <!-- Div for the button -->
-      <div id='submitBtnDiv'>
-        <!-- Submit button -->
-        <button id='submitBtn'>Submit Photo</button>
+  </div>
+  <div class="container-fluid" id="submitArea">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="checkbox">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name='uploadMethods' id="uploadFromDevice" value="upload" checked>
+            <label class="form-check-label" for="uploadFromDevice">
+              Upload From Your Device
+            </label>
+          </div>
+          <div class='form-check form-check-inline'>
+            <input class="form-check-input" type="radio" name='uploadMethods' id="uploadFromUrl" value="useUrl">
+            <label class="form-check-label" for="uploadFromUrl">
+              Use An Image Hosted Elsewhere 
+            </label>
+          </div>
+          <div id='submitBtnDiv'>
+            <!-- Submit button need an identifier to read toggle for use or not in gallery-->
+            <!-- URL Form -->
+            <label for="inputboxID"><i class="fa fa-arrow-down"></i> Please insert the link to your photo here <i class="fa fa-arrow-down"></i></label>
+            <input class="form-control" id="inputboxID" type="text" placeholder="Your Image URL>>" >
+            <br>
+            <button id='submitBtn'>Submit Your Photo</button>
+          </div>
+          <div class='uploadArea' id='uploadArea'>
+            <h2>Upload Your Pic!</h2>
+            <label class='upload-group submissionBtns' id='uploadFileBtn'>
+              Upload Pic
+              <input type='file' class='upload-group submissionBtns' id='userFile'>
+            </label>
+            <button type='button' class='submissionBtns' id='uploadBtn' onclick='uploadUserPhoto()'>Submit Your Photo</button>
+          </div>
+          <label>
+              <input type="checkbox" id="consentToggle" checked data-toggle="toggle" data-size="small">
+                  I allow use of my photo in our celebrity match gallery
+          </label>
+            <!-- <div id='instructionsDiv'>
+              <br>
+           </div> -->
+         </div>          
+        </div>
       </div>
     </div>
-
-    <!-- Div for the dynamically generated previous user matches. This will likely just be an empty div in the HTML? -->
-    <!-- We will add to it via Javascript, adding bootstrap classes as necessary to build rows and columns as we need them -->
-    <!-- Perry mentioned possibly framing this out in HTML instead, and just hiding the elements. This could work, ONLY if we are willing to have a static number of elements. -->
-    <!-- For example, we only display the most recent 10 user submissions. Then we have a HTML skeleton of 10 elements, to which we use JS or jQuery to add urls, text content, etc. -->
-    <!-- Discuss on saturday! -->
-    <div id='userMatchesDiv'>
-
+    <div class="container" id="loadingGifDiv">
+      <img class="mx-auto blockElement" src="assets/images/loadingScreen.gif">
     </div>
 
+  <div id='resultsArea'>
+    <div class="container"> 
+      <div class="row">
+          <div class="d-flex justify-content-center">
+        <!-- <div class="card-deck"> -->
+          <div class="card">
+            
+              <img class='resultImage' id="userPhoto" src="assets/images/dustin.jpg" alt="Thumbnail image of the user">
+            
+              <div class="card-body"> 
+                <h5 class="card-title">Your Photo</h5>              
+              </div>
+          </div>          
+          <div class="card">
+              <img class="image-thumbnail" id="celebPhoto" src="assets/images/zach.jpg" alt="Celebrity photo">
+              <div class="card-body">
+                <h5 class="card-title" id="celebNameDisplay">Zach Galafianakis</h5>
+              </div>
+            </div>
+          <!-- Horoscope example text...id created -->
+            <div class="card"  alt="Celebrity horoscope" id="cardMain">
+              <div class="card-header"><b>Celebrity Horoscope<br><span id='celebZodiac'>Libra</span>:</b></div>
+                <!-- <div class="card-body"> -->
+                  <h6 class="card-title" id="celebHoroscope">People born under this sign exude elegance, charm, and good taste. They are naturally kind, generous, and are lovers of beauty and harmony.</h6>
+                
+            </div>
+        </div> 
+      </div> 
+    </div>
+  </div>
 
-    <!-- Div for the second screen, the user results -->
-    <!-- Once again, Mark can flesh out the appropriate cols/rows, I just wanted to attach IDs so we can use them in JS -->
-    <div id='userResults'>
+<br>
+  <!-- put this inside a container -->
+  <div id='userMatchesDiv' class="container justify-content-center">      
+  </div>
+
       
-      <!-- Div where we display the user photo -->
-      <div id='userPhotoDiv'>
 
-      </div>
-      <!-- Div where we display the celeb photo -->
-      <div id='celebPhotoDiv'>
-
-      </div>
-      <!-- Div where we display the horoscope -->
-      <div id='celebHoroscope'></div>
-    </div>
-
-    <!-- Footer, should be 'sticky', ala it always sits at the bottom of the content, but doesn't appear on the page until you scroll all the way to the bottom of the content -->
     <footer id='footer'>
-
+      <div class="footer bg-secondary">
+        <i class="fa fa-copyright"></i> Copyright 2018 Ilvermorny Productions - All rights reserved</div>
 
     </footer>
 
-
-  </div>
-
-  
   
 
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simply_valid@4.0.1/dist/simply-valid.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>  
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-storage.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB3OK_gHk-gUawA0rVSWZH-P4IIHL9BooM",
+    authDomain: "my-celebrity-horoscope.firebaseapp.com",
+    databaseURL: "https://my-celebrity-horoscope.firebaseio.com",
+    projectId: "my-celebrity-horoscope",
+    storageBucket: "my-celebrity-horoscope.appspot.com",
+    messagingSenderId: "290575991301"
+  };
+  firebase.initializeApp(config);
+  </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src='assets/js/script.js'></script>
 
-</body>
+  </body>
 </html>
