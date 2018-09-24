@@ -89,24 +89,11 @@ var uploadUserPhoto = function() {
 
   // listener for a change in the userImages storage ref
   uploadTask.on('state_changed', function(snapshot) {
-    // observe progess, pause, resume
-    // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    // console.log('Upload is ' + progress + '% done');
-    // switch (snapshot.state) {
-    //   case firebase.storage.TaskState.PAUSED: // or 'paused'
-    //     console.log('Upload is paused');
-    //     break;
-    //   case firebase.storage.TaskState.RUNNING: // or 'running'
-    //     console.log('Upload is running');
-    //     break;
-    // }
-    
+    // monitor if needed    
   }, function (error) {
     // handle errors
     console.log(error)
   }, function() {
-    // handle successful uploads, eg get the download url
-
     // retrieve the download URL for the file just added to storage
     uploadTask.snapshot.ref.getDownloadURL().then(function(userImageUrl) {
       // grab and format the date
@@ -127,7 +114,6 @@ var uploadUserPhoto = function() {
       })
         .then(function(result) {
           var faceToken = result['results'][0]['face_token']
-          console.log(faceToken);
           // publish the results to the firebase db
           grabCelebInfo(faceToken, userImageUrl, today);
         })
@@ -135,9 +121,7 @@ var uploadUserPhoto = function() {
           console.log(error);
         })
     })
-    // console.log(uploadTask.snapshot.downloadURL)
   })
-  
 }
 
 
@@ -148,43 +132,31 @@ $(document).on("click", "#submitBtn", function() {
   var today = formatDate(new Date(), 'MM/DD/YYYY');
 
   // Here, the URL for the user's image upload is stored if there is a URL submitted.
-  var userImageUrl = $('#inputboxID').val().trim();
-  console.log(validate(userImageUrl))
-  //add show hide for loadingGifDiv here
-  
-
+  var userImageUrl = $('#inputboxID').val().trim();  
+  // validate the input
   if (typeof userImageUrl === "string" && validate(userImageUrl).isValid && (userImageUrl.endsWith('.jpg') || userImageUrl.endsWith('.jpeg') || userImageUrl.endsWith('.png'))) {
     $("#loadingGifDiv").show();
     $("#submitArea").hide();
-    // var tempimg = $("<img>").attr(src, userImageUrl)
-    // if (48 < tempimg[0].clientWidth < 4096 && 48 < tempimg[0].clientHeight < 4096) {
-
     // encoding User Url, this ensures that URLs with special characters function correctly
     var encodedUserImage = encodeURI(userImageUrl);
     // Just for clarification, that hanging userImageUrl is actually being concat to urlSubmission.
     var urlSubmission =
       "https://api-us.faceplusplus.com/facepp/v3/search?api_key=pekZASxRDE4SRyviUuybxZZ1e8N_Y1DP&api_secret=NnQHMnRp3lRKQDwhhEHdDXEZ2ZEy2c7j&faceset_token=902643b643b236380ac10248ecd50371&image_url=" + encodedUserImage
       
-
     $.ajax({
       method: "POST",
       url: urlSubmission
     })
       .then(function(result) {
         var faceToken = result['results'][0]['face_token']
-        console.log(faceToken);
         // publish the results to the firebase db
         grabCelebInfo(faceToken, userImageUrl, today);
-      
-
       })
       .catch(function(error) {
         console.log(error);
       });
-  }
-  // } else {$("label[for='inputboxID']").text("The image must be between 48x48 pixels and 4096x4096 pixels OR the image URL is not valid.")} 
+  }  
   else {
-    
     $("label[for='inputboxID']").text("The URL must end with .jpg, .jpeg, or .png. Having issues? Download the image first, then upload!")
     $("label[for='inputboxID']").addClass("elseInputboxID")
   }
@@ -197,18 +169,6 @@ database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value"
     takeObject(snapshot.val()[info]);
   }
 })
-
-
-
-
-
-
-// var testObject = {
-//   userImg: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
-//   celebImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/1200px-CNN.svg.png',
-//   horoscope: 'this is a horoscope'
-// }
-
 
 var takeObject = function(object){
 
@@ -254,21 +214,6 @@ var takeObject = function(object){
   $("<br>").appendTo($("#userMatchesDiv"));
 };
 
-// takeObject(testObject);
-// create elements from an ojbect of data$("<>").text().val();
- // define a function that takes an object  as an argument
-   // parse the data inside
-     // run column and row creation functions
-       // run row maker
-         // run column creator for userImg
-         // run col creator for celebImg
-         // run col creator for horoscope
-
-// create a new column
-
-// append a column to a row
-
-// create a row comprised of columns, and append it to a target div`
 
 //Get display looking right
   //get images to reveal as 200 * 200
