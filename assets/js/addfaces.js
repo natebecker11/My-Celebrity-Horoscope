@@ -6,6 +6,8 @@ var faceSetID = 'CWRU-Ilvermorny-2018-Faceset2';
 var faceSetToken = '902643b643b236380ac10248ecd50371';
 // firebase DB refs
 var database = firebase.database();
+// firebase Auth
+var fAuth = firebase.auth();
 
 var createFaceset = function() {
   $.ajax({
@@ -81,56 +83,37 @@ var faceSetDetail = function() {
   })
 }
 
-
-// // // DEPRECATED!!!
-// // function to add a new face to the face set, taking an image url, a celeb name, and a zodiac sign as the parameters
-// var faceSetter = function(imageUrl, name, sign) {
-//   // generate a token for the linked image
-//   var token = createToken(imageUrl);
-//   // add that token to the face set, returns 1 if the face was added successfully
-//   var faceAdded = faceAdder(token);
-//   // check to see if the face was added successfully
-//   if (faceAdded === 1) {        
-//     // set the image url, celeb name, zodiac sign, and face token to firebase DB
-//     // in the firebase database celebs ref, inside a subref named after the face token
-//     celebsRef.ref('/' + token + '/')
-//       // set the url, name, sign, and face token
-//       .set({
-//         url: imageUrl,
-//         name: name,
-//         sign: sign,
-//         token: token
-//       })
-//     // give confirmation
-//     $('#confirmationBox').text('Added a celebrity. Name: ' + name + ' url: ' + imageUrl + ' sign: ' + sign + ' token: ' + token)
-//   }
-//   else {
-//     // error message
-//     $('#confirmationBox').text('Error, operation not complete');
-//   }   
-// }
-
-
-
 // event listener for submit button
 $('#submitBtn').on('click', function() {
-  var url = $('#urlInput').val();
-  var name = $('#nameInput').val();
-  var sign = $('#signInput').val();
-  if (url && name && sign) {
-    createToken(url, name, sign);
-    url = '';
-    name = '';
-    sign = '';
-    $('#urlInput').empty();
-    $('#nameInput').empty();
-    $('#signInput').empty();
-  }
+  // define an auth array
+  var authUsers = [];
+  // call the ref containing authorized users
+  database.ref('/addFaceUsers/').once('value', function(snapshot) {
+    // loop through the users
+    for (var user in snapshot.val()) {
+      // add their UIDs to the array
+      authUsers.push(snapshot.val()[user]);
+    }
+    // check whether the current user's uid is in the uid array
+    if (authUsers.includes(fAuth.currentUser.uid)) {
+      // grab the input values
+      var url = $('#urlInput').val();
+      var name = $('#nameInput').val();
+      var sign = $('#signInput').val();
+      // check that they are all filled out
+      if (url && name && sign) {
+        // add them to the db and the faceset
+        createToken(url, name, sign);
+        // empty submission fields
+        $('#urlInput').empty();
+        $('#nameInput').empty();
+        $('#signInput').empty();
+      }
+    }
+    // If not authorized, inform them
+    else {$('#confirmationBox').text('Not An Authorized User!')}
+  })
 })
 
 
 
-
-
-
-//sample face token for reference: a0cdbe3d8b94ec7e0623fd74bedaac9c
