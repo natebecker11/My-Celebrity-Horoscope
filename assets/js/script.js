@@ -117,8 +117,9 @@ var uploadUserPhoto = function() {
       })
         .then(function(result) {
           var faceToken = result['results'][0]['face_token']
+          console.log(faceToken);
           // publish the results to the firebase db
-          grabCelebInfo(faceToken, userImageUrl, today);
+          // grabCelebInfo(faceToken, userImageUrl, today);
         })
         .catch(function(error) {
           console.log(error);
@@ -153,8 +154,9 @@ $(document).on("click", "#submitBtn", function() {
     })
       .then(function(result) {
         var faceToken = result['results'][0]['face_token']
+        console.log(faceToken);
         // publish the results to the firebase db
-        grabCelebInfo(faceToken, userImageUrl, today);
+        // grabCelebInfo(faceToken, userImageUrl, today);
       })
       .catch(function(error) {
         console.log(error);

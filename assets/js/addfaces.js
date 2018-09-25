@@ -117,3 +117,30 @@ $('#submitBtn').on('click', function() {
 
 
 
+// prune an image from the DB by name
+var removeCeleb = function(celebName) {
+  database.ref('/celebsRef/').once('value', function(snap) {
+    // console.log(snap.val())
+    for (var celeb in snap.val()) {
+      let celebEntry = snap.val()[celeb]
+      if (celebName == celebEntry.name) {
+        // database.ref('/celebsRef/' + celeb + '/').remove();
+        console.log(celeb)
+      }
+      
+    }
+  })
+}
+
+// prune the image from the faceset
+
+var removeFromFaceSet = function(faceToken)  {
+  $.ajax({
+    method: "POST",
+    url: 'https://api-us.faceplusplus.com/facepp/v3/faceset/removeface?api_key=' + apiKey + '&api_secret=' + apiSecret + '&faceset_token=' + faceSetToken + '&face_tokens=' + faceToken
+
+  }).then(function(response) {
+    console.log(response);
+  })
+
+}
