@@ -1,49 +1,29 @@
-# My-Celebrity-Horoscope
-A celebrity horoscope photo finder
+# My Celebrity Horoscope
+A lightweight app that helps you live your life like your celebrity look-a-like!
 
 
-//Updated Plan
+## Functionality
+Our app idea is simple - everyone is obsessed with celebrities, and most everyone is interested in astrology and horoscopes. Combining these together seems like a natural fit! A user can submit a photo, which we then match to their celebrity look-a-like. That being done, we also today's horoscope to the user, the catch being that it is the horoscope for their celebrity look-a-like, rather than for themself.
 
-//----------SECTION A
+## How It Works
+We built a simple web interface where a user can submit their photo. The photo is sent via AJAX to a face-recognition API, where it is compared to a collection of celebrities that we generated. Then, from a second database we retrieve stored information about the celebrity. Among this information is their astrological sign, which we use to make a second AJAX call to an astrology API. The user match is stored to our database, and then the information is then displayed to the user via jQuery. 
 
-*Perry* -- // 1. submit pressed
-                        //1a. Take link of photo and validate its photo with Dustins library
-                        //1b. Store today's date in a var
-                        //1c. Store link to user face in a variable
-                        //1d. Make API call to the face plus plus API
+## Technologies we used
+### [Face++](https://www.faceplusplus.com/)
+A robust Facial- and Body-recognition API that forms the backbone of our app. We use this both as part of our celebrity database, as well as for doing the actual user vs. celebrity face comparison.
 
-*Nate* --  // 2. Get celeb name and image URL and celeb horoscope sign from the result
-                        //2a. Celeb horoscope sign goes to astrology API (AZTRO)
-                        //2b. Info returned form aztro, (this is the celeb horoscope info) goes to user results div
-                        //2c. Celeb face URL and have that go to user results div
-                                  // cI. Set celeb face URL to a variable (var)
+### [Aztro](https://aztro.readthedocs.io/en/latest/)
+A simple, easy-to-use API that allows us to quickly grab daily horoscopes for a given astrological sign.
 
-*Mark* --  // 3. Transition from screen 1 to screen 2.
-                       //3a. Hide the submit screen
-                                 //aI. Transition screen ??????
-                      //3b. Show the results screen
+### [Firebase](https://firebase.google.com/)
+A platform that provides authentication, databasing, and blob storage. We utilized this in nearly all facets of our app. The high-speed Realtime Database was perfect for the rapid data storage and retrieval that we needed to do, and the auth and storage helped us round out our app as well.
 
-*Mark* -- // 4. Packing those 4 VARIABLES (celeb URL, user URL, celeb HOROSCOPE, Today's DATE) into an object and send them to the Firebase database.
+## Future Development Plans
+### Celebrity Database Automation
+We currently gather celebrity photos, names and signs manually. In order to truly scale our celebrity database, we will need to implement some automation for this process. Ultimately, we will be able to input a list of celebrity names, and then our app finds an appropriate image and the correct zodiac sign for each.
 
+### Local Storage and Image Standardization
+Our image database largely uses third-party-hosted images, most of which are copyrighted. We will need to move to storing images ourselves and pruning the copyrighted images, replacing them with royalty-free equivalents. Additionally, we will add some image format standardization, so that images are of appropriate size and quality before being added to the collection.
 
-
-//----------SECTION B
-
-*Perry* --    // 1. Call Firebase Database
-                        //1a. In the user matches ref
-                        //1b. Limited to 10
-                        //1c. Sorted by date added
-
-*Kristian* -- // 2. Create elements for each
-                                 //2a. FOR-IN LOOP , calling functions defined below
-
-*Kristian* -- // 3. FUNCTION to create columns
-
-*Kristian* -- // 4. FUNCTION to create and append rows
-
-
-
-
-//----------SECTION C
-
-*Nate* -- // 1. Populate face set
+### Social Media Integration
+Users should be able to link their social media accounts to our app. This would streamline the user experience, both in terms of photo submission, as well as sharing their celebrity match with their friends.
