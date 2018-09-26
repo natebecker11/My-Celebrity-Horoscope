@@ -30,7 +30,7 @@ Users should be able to link their social media accounts to our app. This would 
 
 
 ## Contributors
-[Nate Becker](https://github.com/natebecker11)
-[Kristian Neely](https://github.com/kneely13)
-[Alex Perry](https://github.com/Prerry2)
-[Mark Piscioneri](https://github.com/MarkPish)
+- [Nate Becker](https://github.com/natebecker11)
+- [Kristian Neely](https://github.com/kneely13)
+- [Alex Perry](https://github.com/Prerry2)
+- [Mark Piscioneri](https://github.com/MarkPish)
