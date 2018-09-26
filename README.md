@@ -27,3 +27,10 @@ Our image database largely uses third-party-hosted images, most of which are cop
 
 ### Social Media Integration
 Users should be able to link their social media accounts to our app. This would streamline the user experience, both in terms of photo submission, as well as sharing their celebrity match with their friends.
+
+
+## Contributors
+- [Nate Becker](https://github.com/natebecker11)
+- [Kristian Neely](https://github.com/kneely13)
+- [Alex Perry](https://github.com/Prerry2)
+- [Mark Piscioneri](https://github.com/MarkPish)
