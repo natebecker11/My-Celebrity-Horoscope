@@ -169,9 +169,8 @@ $(document).on("click", "#submitBtn", function() {
 // database listener for whenever a new match is added to the matches DB
 database.ref("userMatches").orderByChild("dateAdded").limitToLast(10).on("value", function(snapshot) {
   $('#userMatchesDiv').empty();
-  for (var info in snapshot.val()) {
-    takeObject(snapshot.val()[info]);
-  }
+  let keys = Object.keys(snapshot.val())
+  keys.forEach(key => takeObject(snapshot.val()[key]))
 })
 
 var takeObject = function(object){
