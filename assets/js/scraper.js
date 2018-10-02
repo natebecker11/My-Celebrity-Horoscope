@@ -29,5 +29,4 @@
 
 
 // todo:
-  // redo ajax in as fetch req
-  // more wiki api research
+  // figure out puppeteer
