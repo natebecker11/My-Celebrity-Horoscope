@@ -17,16 +17,32 @@
 // let zod = rawZod.slice(rawZod.indexOf(' ') + 1);
 
 
+// let theImageUrl = '';
+$.ajax({
+  method: 'GET',
+  url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&origin=*&format=json&prop=info&inprop=url&srsearch=Bradley%20Cooper'
+})
+  .then(resp => resp.query.search[0].pageid)
+  .then(data => {
+    
+    $.ajax({
+      method: 'GET',
+      url: 'http://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&origin=*&titles=Bradley%20Cooper&piprop=original'
+    }).then(resp => {
+      console.log(resp.query.pages[data].original.source)
+      return resp.query.pages[data].original.source
+    })
+  })
+
 
 // $.ajax({
 //   method: 'GET',
-//   url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&origin=*&format=json&prop=info&inprop=url&srsearch=Bradley%20Cooper'
+//   url: 'http://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages&origin=*&titles=Bradley%20Cooper&piprop=original'
 // })
 //   // .then(resp => console.log(resp.query.search[0]))
-//     .then(resp => console.log(resp))
+//     .then(resp => console.log(resp.query.pages))
 
-
-
+    
 
 // todo:
   // figure out puppeteer
