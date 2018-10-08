@@ -1,4 +1,4 @@
-
+const grabber = require('./download.js')
 // // fetch api setup
 
 // const fetch = require('node-fetch');
@@ -18,21 +18,21 @@
 
 
 // let theImageUrl = '';
-$.ajax({
-  method: 'GET',
-  url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&origin=*&format=json&prop=info&inprop=url&srsearch=Bradley%20Cooper'
-})
-  .then(resp => resp.query.search[0].pageid)
-  .then(data => {
+// $.ajax({
+//   method: 'GET',
+//   url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&origin=*&format=json&prop=info&inprop=url&srsearch=Bradley%20Cooper'
+// })
+//   .then(resp => resp.query.search[0].pageid)
+//   .then(data => {
     
-    $.ajax({
-      method: 'GET',
-      url: 'http://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&origin=*&titles=Bradley%20Cooper&piprop=original'
-    }).then(resp => {
-      console.log(resp.query.pages[data].original.source)
-      return resp.query.pages[data].original.source
-    })
-  })
+//     $.ajax({
+//       method: 'GET',
+//       url: 'http://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&origin=*&titles=Bradley%20Cooper&piprop=original'
+//     }).then(resp => {
+//       console.log(resp.query.pages[data].original.source)
+//       return resp.query.pages[data].original.source
+//     })
+//   })
 
 
 // $.ajax({
@@ -46,3 +46,7 @@ $.ajax({
 
 // todo:
   // figure out puppeteer
+
+grabber('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
+    console.log('done');
+  })
