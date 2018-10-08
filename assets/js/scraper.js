@@ -1,14 +1,9 @@
-const grabber = require('./download.js')
-// // fetch api setup
+const request = require('request')
 
-// const fetch = require('node-fetch');
+const getImage = require('./getimage.js')
+const getZodiac = require('./getzodiac.js')
 
-// const fetchData = url => {
-//   fetch(url)
-//     .then(resp => resp.json())
-//     .then(resp => console.log(resp['query']['search'][0]['pageid']))
-// }
-// fetchData('https://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&origin=*&format=json&prop=info&inprop=url&srsearch=Bradley%20Cooper')
+
 
 
 // let wikiPic = Array.from(document.querySelectorAll('.infobox.biography img'))[0].src
@@ -44,9 +39,13 @@ const grabber = require('./download.js')
 
     
 
-// todo:
-  // figure out puppeteer
 
-grabber('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
-    console.log('done');
-  })
+// getImage('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
+//     console.log('done');
+//   })
+
+
+
+
+
+getZodiac('Bradley_Cooper')
