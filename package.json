@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/natebecker11/My-Celebrity-Horoscope#readme",
   "dependencies": {
-    "node-fetch": "^2.2.0"
+    "node-fetch": "^2.2.0",
+    "request": "^2.88.0"
   }
 }
