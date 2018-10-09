@@ -2,6 +2,7 @@ const request = require('request')
 
 const getImage = require('./getimage.js')
 const getZodiac = require('./getzodiac.js')
+const getImgUrl = require('./getimgurl.js')
 
 
 
@@ -45,7 +46,21 @@ const getZodiac = require('./getzodiac.js')
 //   })
 
 
+// Promise.all([
+//   // getZodiac('Bradley_Cooper'),
+//   getImgUrl('Bradley Cooper')
+// ]).then(values => getImage(values[0], 'test.png', () => {
+//   console.log('done')
+// }))
 
+// console.log('zodiac works:' + getZodiac('Bradley_Cooper'))
+// console.log('image url works: ' + getImgUrl('Bradley Cooper'))
 
+const proofOfConcept = (name) => {
+  return getImgUrl(name)
+          .then(url => getImage(url, 'test.png', () => {
+            console.log('done')
+          }))
+}
 
-getZodiac('Bradley_Cooper')
+proofOfConcept(process.argv[2])

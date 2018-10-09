@@ -12,8 +12,10 @@ const getZodiac = async (celeb) => {
   });
  
   console.log(zodSign);
+  
  
   await browser.close();
+  return zodSign;
 };
 
 module.exports = getZodiac
