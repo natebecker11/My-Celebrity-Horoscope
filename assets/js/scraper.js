@@ -46,21 +46,33 @@ const getImgUrl = require('./getimgurl.js')
 //   })
 
 
+const getImgZod = (target) => {
+  let zodTarg = target.replace(' ', '_')
+  return Promise.all([
+    getZodiac(zodTarg),
+    getImgUrl(target)
+  ]).then(values => getImage(values[1], 'test/test.png', () => {
+    console.log('done')
+  }))
+}
+
 // Promise.all([
-//   // getZodiac('Bradley_Cooper'),
+//   getZodiac('Bradley_Cooper'),
 //   getImgUrl('Bradley Cooper')
-// ]).then(values => getImage(values[0], 'test.png', () => {
+// ]).then(values => getImage(values[1], 'test.png', () => {
 //   console.log('done')
 // }))
 
 // console.log('zodiac works:' + getZodiac('Bradley_Cooper'))
 // console.log('image url works: ' + getImgUrl('Bradley Cooper'))
 
-const proofOfConcept = (name) => {
-  return getImgUrl(name)
-          .then(url => getImage(url, 'test.png', () => {
-            console.log('done')
-          }))
-}
+// const proofOfConcept = (name) => {
+//   return getImgUrl(name)
+//           .then(url => getImage(url, 'test.png', () => {
+//             console.log('done')
+//           }))
+// }
 
-proofOfConcept(process.argv[2])
+// proofOfConcept(process.argv[2])
+
+getImgZod(process.argv[2])
