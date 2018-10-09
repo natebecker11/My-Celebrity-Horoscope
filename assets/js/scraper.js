@@ -51,9 +51,15 @@ const getImgZod = (target) => {
   return Promise.all([
     getZodiac(zodTarg),
     getImgUrl(target)
-  ]).then(values => getImage(values[1], 'test/test.png', () => {
-    console.log('done')
-  }))
+  ]).then(values => {
+    let imageUrl = values[1]
+    if (!imageUrl) return null
+    // console.log (!imageUrl)
+    return getImage(values[1], 'test/test.png', (thing) => {
+      console.log('done')
+      return thing
+    })
+  }).then(resp => console.log(!!resp))
 }
 
 // Promise.all([

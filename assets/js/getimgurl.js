@@ -39,7 +39,8 @@ const getImage = celebName => {
 
   const extractPageID = (resp) => {
     let pageKey = Object.keys(JSON.parse(resp).query.pages)
-    return JSON.parse(resp).query.pages[pageKey].original.source
+    let celebObj = JSON.parse(resp).query.pages[pageKey]
+    return celebObj.original ? celebObj.original.source : null
   }
 
   return wikiReq(celebName)
@@ -48,7 +49,10 @@ const getImage = celebName => {
       console.log(data)
       return data
     })
-
+    .catch(err => console.log(err))
 }
 
 module.exports = getImage
+
+
+// getImage('Danny Devito')
