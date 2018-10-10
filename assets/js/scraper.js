@@ -4,8 +4,10 @@ const keys = require('./keys.js')
 const gKeys = keys.google
 const getImage = require('./getimage.js')
 const getZodiac = require('./getzodiac.js')
-const getImgUrl = require('./getimgurl.js')
+// const getImgUrl = require('./getimgurl.js')
 const getGoogleUrl = require('./getgoogle.js')
+// const resizeImg = require('./resize.js')
+const Jimp = require("jimp")
 
 
 
@@ -52,18 +54,26 @@ const getGoogleUrl = require('./getgoogle.js')
 const getImgZod = (target) => {
   let zodTarg = target.replace(' ', '_')
   return Promise.all([
-    getZodiac(zodTarg),
+    // getZodiac(zodTarg),
     // getImgUrl(target),
     getGoogleUrl(target)
   ]).then(values => {
-    let imageUrl = values[1]
+    let imageUrl = values[0]
     if (!imageUrl) return null
     // console.log (!imageUrl)
-    return getImage(values[1], 'test/test.png', (thing) => {
+    return getImage(values[0], 'test/test.png', (thing) => {
       console.log('done')
+      Jimp.read('test/test.png')
+          .then(image => {
+            image
+              .cover(250, 250, Jimp.VERTICAL_ALIGN_TOP | Jimp.HORIZONTAL_ALIGN_CENTER)
+              .write('test/testCopy.png')
+          })
       return thing
     })
-  }).then(resp => console.log(!!resp))
+  })
+  .then(resp => console.log(!!resp))
+  .catch(err => console.error(err))
 }
 
 // Promise.all([
@@ -86,3 +96,6 @@ const getImgZod = (target) => {
 // proofOfConcept(process.argv[2])
 
 getImgZod(process.argv[2])
+
+
+// TODO: return multiple images from GIS, then choose one that is an image

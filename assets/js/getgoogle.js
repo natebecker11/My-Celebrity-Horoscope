@@ -23,10 +23,11 @@ const grabImage = (query) => {
 const grabTwo = query => {
   return rp(`https://www.googleapis.com/customsearch/v1?fileType=.png&imgSize=large&imgType=face&num=1&rights=cc_publicdomain%20cc_attribute%20cc_sharealike%20cc_noncommercial%20cc_nonderived&safe=active&searchType=image&key=${apiKey}&cx=${cx}&q=${query}`)
     .then(body => JSON.parse(body).items[0].link)
+    // .then(url => console.log(url))
     .catch(err => console.log(err))
 }
 
 
-grabTwo(process.argv[2])
+// grabTwo(process.argv[2])
 
 module.exports = grabTwo
