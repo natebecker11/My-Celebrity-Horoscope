@@ -19,3 +19,5 @@ const getZodiac = async (celeb) => {
 };
 
 module.exports = getZodiac
+
+// getZodiac('Bradley_Cooper')

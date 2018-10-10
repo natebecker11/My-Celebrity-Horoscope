@@ -3,6 +3,7 @@ const request = require('request')
 const getImage = require('./getimage.js')
 const getZodiac = require('./getzodiac.js')
 const getImgUrl = require('./getimgurl.js')
+const getGoogleUrl = require('./getgoogle.js')
 
 
 
@@ -50,7 +51,8 @@ const getImgZod = (target) => {
   let zodTarg = target.replace(' ', '_')
   return Promise.all([
     getZodiac(zodTarg),
-    getImgUrl(target)
+    // getImgUrl(target),
+    getGoogleUrl(target)
   ]).then(values => {
     let imageUrl = values[1]
     if (!imageUrl) return null
