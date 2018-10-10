@@ -99,3 +99,7 @@ getImgZod(process.argv[2])
 
 
 // TODO: return multiple images from GIS, then choose one that is an image
+// TODO: upload cropped image to firebase storage
+// todo: create entry for image in celebsref on firebase db
+// todo: run face++ for the image
+// todo: store face++ 
