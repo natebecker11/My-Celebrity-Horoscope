@@ -1,5 +1,7 @@
 const request = require('request')
-
+require('dotenv').config()
+const keys = require('./keys.js')
+const gKeys = keys.google
 const getImage = require('./getimage.js')
 const getZodiac = require('./getzodiac.js')
 const getImgUrl = require('./getimgurl.js')

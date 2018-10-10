@@ -1,7 +1,10 @@
+require('dotenv').config()
+const keys = require('./keys.js')
+const gKeys = keys.google
 const request = require('request')
 const rp = require('request-promise-native')
-const apiKey = 'AIzaSyAhnBk8RAR40P_0owcy2biNH7sUAU4yYmw'
-const cx = '012157156437842315643:mvefv_qtasg';
+const apiKey = gKeys.key
+const cx = gKeys.cx
 // rp('https://www.google.com/search?as_rights=(cc_publicdomain|cc_attribute|cc_sharealike).-(cc_noncommercial|cc_nonderived)&q=danny%20devito&hl=')
 //   .then(resp => console.log(resp))
 
@@ -24,6 +27,6 @@ const grabTwo = query => {
 }
 
 
-// grabTwo(process.argv[2])
+grabTwo(process.argv[2])
 
 module.exports = grabTwo
