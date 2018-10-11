@@ -8,8 +8,10 @@ const getZodiac = require('./getzodiac.js')
 const getGoogleUrl = require('./getgoogle.js')
 // const resizeImg = require('./resize.js')
 const Jimp = require("jimp")
+// const firebase = require("firebase");
+
 const admin = require('firebase-admin')
-const db = admin.database()
+
 
 const serviceAccount = require('../../serviceAccountKey.json');
 
@@ -17,8 +19,19 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://my-celebrity-horoscope.firebaseio.com"
 });
+const db = admin.database()
 
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyB3OK_gHk-gUawA0rVSWZH-P4IIHL9BooM",
+//   authDomain: "my-celebrity-horoscope.firebaseapp.com",
+//   databaseURL: "https://my-celebrity-horoscope.firebaseio.com",
+//   projectId: "my-celebrity-horoscope",
+//   storageBucket: "my-celebrity-horoscope.appspot.com",
+//   messagingSenderId: "290575991301"
+// };
+// firebase.initializeApp(firebaseConfig);
+// const database = firebase.database();
 
 
 // let wikiPic = Array.from(document.querySelectorAll('.infobox.biography img'))[0].src
@@ -115,4 +128,5 @@ const getImgZod = (target) => {
 // todo: continue firebase fuckery
 
 
-db.ref().once('value', snap => console.log(snap.val()))
+// database.ref('addFaceUsers').once('value', snap => console.log(snap.val()))
+// db.ref('addFaceUsers').once('value', snap => console.log(snap.val()))
