@@ -8,6 +8,15 @@ const getZodiac = require('./getzodiac.js')
 const getGoogleUrl = require('./getgoogle.js')
 // const resizeImg = require('./resize.js')
 const Jimp = require("jimp")
+const admin = require('firebase-admin')
+const db = admin.database()
+
+const serviceAccount = require('../../serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://my-celebrity-horoscope.firebaseio.com"
+});
 
 
 
@@ -95,7 +104,7 @@ const getImgZod = (target) => {
 
 // proofOfConcept(process.argv[2])
 
-getImgZod(process.argv[2])
+// getImgZod(process.argv[2])
 
 
 // TODO: return multiple images from GIS, then choose one that is an image
@@ -103,3 +112,7 @@ getImgZod(process.argv[2])
 // todo: create entry for image in celebsref on firebase db
 // todo: run face++ for the image
 // todo: store face++ 
+// todo: continue firebase fuckery
+
+
+db.ref().once('value', snap => console.log(snap.val()))
