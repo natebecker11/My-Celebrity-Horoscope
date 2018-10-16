@@ -82,18 +82,38 @@ const getImgZod = (target) => {
 }
 
 const uploadImage = (faceToken) => {
-  let storageBucket = storage.bucket()
-  // let storageRef = storage.ref('/celebImages/' + faceToken + '.png')
-  let image =  storageBucket.file(`celebImages/${faceToken}.png`)
-  fs.createReadStream('test/testCopy.png')
-    .pipe(image.createWriteStream())
-    .on('error', err => console.log(err))
-    .on('finish', () => {
-      console.log('complete')
+  let image;
+  return new Promise((resolve,reject) => {
+    let storageBucket = storage.bucket()
+    // let storageRef = storage.ref('/celebImages/' + faceToken + '.png')
+    image =  storageBucket.file(`celebImages/${faceToken}.png`)
+    fs.createReadStream('test/testCopy.png')
+      .pipe(image.createWriteStream())
+      .on('error', err => {
+        console.log(err)
+        reject(err)
+      })
+      .on('finish', (result) => {
+        console.log('complete')
+        resolve(result);
+      })      
+  })
+    .then(() => {
+      return image.getSignedUrl({
+        action: 'read',
+        expires: '03-09-2491'
+      })
+    })    
+    .then(signedUrls => {
+      // signedUrls[0] contains the file's public URL
+      // console.log(signedUrls[0])
+      return signUrls[0]
     })
 }
 
-// uploadImage('1234567')
+uploadImage('1234567')
+// .then(res => console.log(res))
+
 // Promise.all([
 //   getZodiac('Bradley_Cooper'),
 //   getImgUrl('Bradley Cooper')

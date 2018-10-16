@@ -55,3 +55,4 @@ module.exports.addToken = (token) => {
   })
 }
 
+module.exports.getToken('https://storage.googleapis.com/my-celebrity-horoscope.appspot.com/celebImages%2F1234567.png?GoogleAccessId=firebase-adminsdk-io82f%40my-celebrity-horoscope.iam.gserviceaccount.com&Expires=16447035600&Signature=I1A53N4sW%2FWLsyWZvTGtzXarYgmOqyO7V%2FtUjHbBBlY%2B%2FZ0gUsNzqjV%2BhpwDqxPJyKiH6kIlRs3D3bbj8cDQixItjzQ7jeaXLdESmtSYnrbqg2vna1UIqam%2B0JuFhwxeH8mD5Lj%2BramH2ZQJKyAC6XN%2F9dorDDRovwQ%2BV3A04n1LR3wiE8LdZxtZMhLTQ8JQpof4ix7qsVoTZ9%2BysI6kZfKTf1jipwhwdDORmAZRwpzY%2BG0EX9u5ZJJDFZS2rCpl%2F1U2iPDk07m95XBC5fsn%2BxcMoF2RP060DT9eVhIeCCIgvMFjwo0B10BnpqLY%2BqgBhuKkvbxNvCdgcIVvem7%2ByQ%3D%3D')
