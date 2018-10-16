@@ -1,9 +1,13 @@
 const request = require('request')
+const rp = require('request-promise-native')
 require('dotenv').config()
 const keys = require('./keys.js')
 const gKeys = keys.google
 // const fireApiKey = keys.firebase.key
-
+const facePlusKey = keys.faceplus.key
+const facePlusSecret = keys.faceplus.secret
+const faceSetToken = '9711957eacdcac8875925abca37d090c'
+const fs = require('fs')
 const getImage = require('./getimage.js')
 const getZodiac = require('./getzodiac.js')
 // const getImgUrl = require('./getimgurl.js')
@@ -19,9 +23,11 @@ const serviceAccount = require('../../serviceAccountKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://my-celebrity-horoscope.firebaseio.com"
+  databaseURL: "https://my-celebrity-horoscope.firebaseio.com",
+  storageBucket: "my-celebrity-horoscope.appspot.com"
 });
-const db = admin.database()
+const db = admin.database();
+const storage = admin.storage();
 
 
 // const firebaseConfig = {
@@ -42,37 +48,10 @@ const db = admin.database()
 // let zod = rawZod.slice(rawZod.indexOf(' ') + 1);
 
 
-// let theImageUrl = '';
-// $.ajax({
-//   method: 'GET',
-//   url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&origin=*&format=json&prop=info&inprop=url&srsearch=Bradley%20Cooper'
-// })
-//   .then(resp => resp.query.search[0].pageid)
-//   .then(data => {
-    
-//     $.ajax({
-//       method: 'GET',
-//       url: 'http://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&origin=*&titles=Bradley%20Cooper&piprop=original'
-//     }).then(resp => {
-//       console.log(resp.query.pages[data].original.source)
-//       return resp.query.pages[data].original.source
-//     })
-//   })
 
 
-// $.ajax({
-//   method: 'GET',
-//   url: 'http://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages&origin=*&titles=Bradley%20Cooper&piprop=original'
-// })
-//   // .then(resp => console.log(resp.query.search[0]))
-//     .then(resp => console.log(resp.query.pages))
-
-    
 
 
-// getImage('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
-//     console.log('done');
-//   })
 
 
 const getImgZod = (target) => {
@@ -97,9 +76,23 @@ const getImgZod = (target) => {
     })
   })
   .then(resp => console.log(!!resp))
+  .then()
   .catch(err => console.error(err))
 }
 
+const uploadImage = (faceToken) => {
+  let storageBucket = storage.bucket()
+  // let storageRef = storage.ref('/celebImages/' + faceToken + '.png')
+  let image =  storageBucket.file(`celebImages/${faceToken}.png`)
+  fs.createReadStream('test/testCopy.png')
+    .pipe(image.createWriteStream())
+    .on('error', err => console.log(err))
+    .on('finish', () => {
+      console.log('complete')
+    })
+}
+
+uploadImage('1234567')
 // Promise.all([
 //   getZodiac('Bradley_Cooper'),
 //   getImgUrl('Bradley Cooper')
