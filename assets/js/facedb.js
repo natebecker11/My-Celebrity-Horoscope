@@ -94,7 +94,8 @@ const uploadImage = (faceToken) => {
         reject(err)
       })
       .on('finish', (result) => {
-        console.log('complete')
+        // console.log(result)
+        console.log(`https://storage.googleapis.com/my-celebrity-horoscope.appspot.com/celebImages/${faceToken}.png`)
         resolve(result);
       })      
   })
@@ -107,11 +108,13 @@ const uploadImage = (faceToken) => {
     .then(signedUrls => {
       // signedUrls[0] contains the file's public URL
       // console.log(signedUrls[0])
-      return signUrls[0]
+      // return signUrls[0]
     })
+    
 }
 
-uploadImage('1234567')
+uploadImage('1234567891234')
+
 // .then(res => console.log(res))
 
 // Promise.all([
