@@ -4,9 +4,10 @@ require('dotenv').config()
 const keys = require('./keys.js')
 const gKeys = keys.google
 // const fireApiKey = keys.firebase.key
-const facePlusKey = keys.faceplus.key
-const facePlusSecret = keys.faceplus.secret
-const faceSetToken = '9711957eacdcac8875925abca37d090c'
+// const facePlusKey = keys.faceplus.key
+// const facePlusSecret = keys.faceplus.secret
+// const faceSetToken = '9711957eacdcac8875925abca37d090c'
+const facepp = require('./faceplusplus.js')
 const fs = require('fs')
 const getImage = require('./getimage.js')
 const getZodiac = require('./getzodiac.js')
@@ -92,7 +93,7 @@ const uploadImage = (faceToken) => {
     })
 }
 
-uploadImage('1234567')
+// uploadImage('1234567')
 // Promise.all([
 //   getZodiac('Bradley_Cooper'),
 //   getImgUrl('Bradley Cooper')
@@ -125,3 +126,5 @@ uploadImage('1234567')
 
 // database.ref('addFaceUsers').once('value', snap => console.log(snap.val()))
 // db.ref('addFaceUsers').once('value', snap => console.log(snap.val()))
+
+// facepp.searchToken('https://firebasestorage.googleapis.com/v0/b/my-celebrity-horoscope.appspot.com/o/celebImages%2F1234567.png?alt=media&token=4d5af896-ffdc-45d6-a69f-4f0291051d32')
