@@ -115,6 +115,8 @@ const uploadImage = (faceToken) => {
 
 uploadImage('1234567891234')
 
+// this is a test to see if github is being a jerk
+
 // .then(res => console.log(res))
 
 // Promise.all([
